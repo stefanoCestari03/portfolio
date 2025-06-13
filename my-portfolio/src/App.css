@@ -1,0 +1,158 @@
+.app {
+  text-align: center;
+}
+
+.header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+/* ... (codice precedente per .container, .card, .grid-container) ... */
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #3498db;
+}
+
+/* === MODIFICA QUESTO BLOCCO PER LA CARD ABOUT-ME === */
+.about-me {
+  text-align: center;
+  position: relative;
+  padding: 40px 20px;
+  color: white;
+  overflow: hidden;
+  background-color: transparent; /* AGGIUNGI O MODIFICA QUESTA RIGA */
+}
+
+.about-me::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./assets/background-card.jpg'); /* INSERISCI QUI IL NOME E IL PERCORSO DELLA TUA IMMAGINE */
+  background-size: cover; /* Copre l'intera area, tagliando se necessario */
+  background-position: center; /* Centra l'immagine */
+  background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
+  filter: brightness(0.6) blur(2px); /* Opzionale: scurisci e sfoca l'immagine */
+  z-index: -1; /* Metti l'immagine dietro al contenuto della card */
+  border-radius: 8px; /* Applica la stessa border-radius della card */
+}
+
+/* Modifica gli stili per il testo all'interno di .about-me per renderlo leggibile */
+.about-me h2,
+.about-me p {
+  color: white; /* Assicurati che il testo sia bianco o un colore molto chiaro */
+  position: relative; /* Per assicurare che il testo sia sopra lo sfondo */
+  z-index: 1;
+}
+
+/* Modifica anche il bordo della foto profilo se il nuovo sfondo è scuro */
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 4px solid #205abd; /* Bordo bianco per risaltare su sfondo scuro */
+  position: relative; /* Per assicurare che la foto sia sopra lo sfondo */
+  z-index: 1;
+}
+
+/* ... (resto del codice CSS) ... */
+
+
+.about-me {
+  text-align: center;
+}
+
+.footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 15px 0;
+  margin-top: 40px;
+  font-size: 0.9em;
+}
+
+.skill-card {
+  background-color: #ecf0f1; /* Grigio chiaro per le card di skill */
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px); /* Effetto al passaggio del mouse */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.skill-card h4 {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.skill-card p {
+  font-size: 0.9em;
+  color: #555;
+}
+/* ... (tutti gli stili precedenti) ... */
+
+/* Stili per la barra di avanzamento dello scroll */
+.scroll-progress-container {
+  position: fixed; /* Rende la barra fissa in basso */
+  bottom: 0; /* La posiziona in fondo */
+  left: 0;
+  width: 100%;
+  height: 6px; /* Altezza della barra */
+  background-color: #e0e0e0; /* Colore di sfondo della barra */
+  z-index: 1000; /* Assicura che sia sopra gli altri elementi */
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background-color: #3498db; /* Colore principale della barra */
+  transform-origin: 0% 50%; /* L'animazione parte da sinistra */
+}
+
+.scroll-progress-dot {
+  position: absolute;
+  top: 50%; /* Centra il pallino verticalmente nella barra */
+  transform: translate(-50%, -50%); /* Regola la posizione per centrare */
+  width: 16px; /* Dimensione del pallino */
+  height: 16px;
+  background-color: #e74c3c; /* Colore del pallino (un rosso vivace) */
+  border-radius: 50%; /* Rende il pallino circolare */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Ombra per farlo risaltare */
+  z-index: 1001; /* Sopra la barra */
+}
+
+.scroll-progress-container {
+  position: fixed;
+  /* bottom: 0; */ /* Rimuovi o commenta questa riga */
+  bottom: 20px; /* Ad esempio, 20px sopra il bordo inferiore */
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: #e0e0e0;
+  z-index: 1000;
+}
+
+
