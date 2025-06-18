@@ -1,18 +1,19 @@
 import React from 'react';
 
 const softSkillsData = [
-  { name: 'Comunicazione', description: 'Capacità di esprimere idee in modo chiaro e ascoltare attivamente.' },
-  { name: 'Problem Solving', description: 'Approccio analitico per identificare e risolvere le sfide.' },
-  { name: 'Lavoro di Squadra', description: 'Collaborazione efficace con gli altri per raggiungere obiettivi comuni.' },
-  { name: 'Adattabilità', description: 'Flessibilità nel gestire cambiamenti e nuove situazioni.' },
-  { name: 'Pensiero Critico', description: 'Analisi obiettiva delle informazioni per prendere decisioni informate.' },
-  { name: 'Gestione del Tempo', description: 'Capacità di organizzare e prioritizzare le attività.' },
+  { name: 'Communication', description: 'Ability to express ideas clearly and listen actively.' },
+  { name: 'Problem Solving', description: 'Analytical approach to identify and resolve challenges.' },
+  { name: 'Teamwork', description: 'Effective collaboration with others to achieve common goals.' },
+  { name: 'Adaptability', description: 'Flexibility in managing changes and new situations.' },
+  { name: 'Critical Thinking', description: 'Objective analysis of information to make informed decisions.' },
+  { name: 'Time Management', description: 'Ability to organize and prioritize tasks.' },
+  { name: 'English Language', description: 'Proficiency Level: B2+ (IELTS certification)' }, // Modificato qui
 ];
 
 const SoftSkills = () => {
   return (
     <div className="card">
-      <h3>Le Mie Soft Skills</h3>
+      <h3>Soft Skills</h3>
       <div className="grid-container">
         {softSkillsData.map((skill, index) => (
           <div key={index} className="skill-card">

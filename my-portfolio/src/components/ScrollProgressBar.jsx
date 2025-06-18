@@ -8,7 +8,7 @@ const ScrollProgressBar = () => {
   // Puoi regolare 'stiffness' e 'damping' qui se vuoi cambiare la fluidità della barra.
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 150, // Diminuisci per rendere la barra più "elastica" nel riempimento
-    damping: 50,    // Aumenta per smorzare l'oscillazione
+    damping: 50 ,    // Aumenta per smorzare l'oscillazione
     restDelta: 0.001
   });
 
