@@ -338,21 +338,21 @@ export default function Portfolio() {
               Outside of work, I enjoy playing guitar and singing, sports like volleyball and gym training, mountain excursions, and travel. 
               I strongly believe that continuous learning is essential for staying ahead in the fast-evolving IT industry.
             </p>
-            <div className="grid grid-cols-3 gap-6 mt-10">
-              <div className="text-center p-6 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm">
-                <Shield size={32} className="mx-auto mb-2 text-cyan-400" />
-                <div className="text-2xl font-bold text-cyan-400 mb-2">Security</div>
-                <div className="text-white/60">SOC & Firewall</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            <div className="text-center p-6 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm min-h-[180px] flex flex-col items-center justify-center">
+                <Shield size={40} className="mx-auto mb-3 text-cyan-400" />
+                <div className="text-2xl font-bold text-cyan-400 mb-2 whitespace-nowrap">Security</div>
+                <div className="text-white/60 text-sm">SOC & Firewall</div>
               </div>
-              <div className="text-center p-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl backdrop-blur-sm">
-                <Server size={32} className="mx-auto mb-2 text-purple-400" />
-                <div className="text-2xl font-bold text-purple-400 mb-2">SysAdmin</div>
-                <div className="text-white/60">Linux & Windows</div>
+              <div className="text-center p-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl backdrop-blur-sm min-h-[180px] flex flex-col items-center justify-center">
+                <Server size={40} className="mx-auto mb-3 text-purple-400" />
+                <div className="text-2xl font-bold text-purple-400 mb-2 whitespace-nowrap">SysAdmin</div>
+                <div className="text-white/60 text-sm">Linux & Windows</div>
               </div>
-              <div className="text-center p-6 bg-gradient-to-br from-pink-500/20 to-orange-500/20 rounded-2xl backdrop-blur-sm">
-                <Network size={32} className="mx-auto mb-2 text-pink-400" />
-                <div className="text-2xl font-bold text-pink-400 mb-2">Network</div>
-                <div className="text-white/60">Analysis & Configuring</div>
+              <div className="text-center p-6 bg-gradient-to-br from-pink-500/20 to-orange-500/20 rounded-2xl backdrop-blur-sm min-h-[180px] flex flex-col items-center justify-center">
+                <Network size={40} className="mx-auto mb-3 text-pink-400" />
+                <div className="text-2xl font-bold text-pink-400 mb-2 whitespace-nowrap">Network</div>
+                <div className="text-white/60 text-sm">Analysis & Configuring</div>
               </div>
             </div>
           </div>
