@@ -1,12 +1,65 @@
-# React + Vite
+# My Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React project created using Vite and styled with Tailwind CSS. The project serves as a personal portfolio to showcase projects and skills.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To get started with this project, follow these steps:
 
-## Expanding the ESLint configuration
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd my-portfolio
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser:**
+   Navigate to `http://localhost:3000` to view your application.
+
+## Project Structure
+
+The project has the following structure:
+
+```
+my-portfolio
+├── index.html          # Main HTML document
+├── package.json        # NPM configuration file
+├── tsconfig.json       # TypeScript configuration file
+├── vite.config.ts      # Vite configuration file
+├── tailwind.config.cjs  # Tailwind CSS configuration file
+├── postcss.config.cjs  # PostCSS configuration file
+├── .gitignore          # Git ignore file
+├── README.md           # Project documentation
+└── src
+    ├── main.tsx       # Entry point of the React application
+    ├── App.tsx        # Main App component
+    ├── index.css      # Global CSS styles
+    ├── components
+    │   └── Portfolio.tsx # Portfolio component
+    └── types
+        └── index.d.ts  # TypeScript types and interfaces
+```
+
+## Technologies Used
+
+- React
+- Vite
+- TypeScript
+- Tailwind CSS
+
+## Contributing
+
+If you would like to contribute to this project, please fork the repository and submit a pull request. 
+
+## License
+
+This project is licensed under the MIT License.
