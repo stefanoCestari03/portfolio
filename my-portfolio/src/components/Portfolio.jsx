@@ -272,7 +272,7 @@ export default function Portfolio() {
             </span>
           </h1>
           <p className="text-xl md:text-3xl text-white/80 mb-4 animate-fade-in-delay">
-            Network & Security System Engineer
+            System Administrator | Network & Security System Engineer
           </p>
           <p className="text-lg md:text-xl text-cyan-400 mb-8 animate-fade-in-delay">
             ICT Specialist | SOC Analyst | System Administrator
@@ -281,10 +281,10 @@ export default function Portfolio() {
             <a href="https://www.linkedin.com/in/stefano-cestari-a7a730264/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 backdrop-blur-lg rounded-full hover:bg-white/20 transition-all hover:scale-110">
               <Linkedin size={24} />
             </a>
-            <a href="mailto:stefano@example.com" className="p-3 bg-white/10 backdrop-blur-lg rounded-full hover:bg-white/20 transition-all hover:scale-110">
+            <a href="mailto:stefano.cestari2203@gmail.com" className="p-3 bg-white/10 backdrop-blur-lg rounded-full hover:bg-white/20 transition-all hover:scale-110">
               <Mail size={24} />
             </a>
-            <a href="#" className="p-3 bg-white/10 backdrop-blur-lg rounded-full hover:bg-white/20 transition-all hover:scale-110">
+            <a href="https://github.com/stefanoCestari03" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 backdrop-blur-lg rounded-full hover:bg-white/20 transition-all hover:scale-110">
               <Github size={24} />
             </a>
           </div>
@@ -483,10 +483,10 @@ export default function Portfolio() {
             <a href="https://www.linkedin.com/in/stefano-cestari-a7a730264/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-cyan-400 transition-colors">
               <Linkedin size={24} />
             </a>
-            <a href="mailto:stefano@example.com" className="text-white/70 hover:text-cyan-400 transition-colors">
+            <a href="mailto:stefano.cestari2203@gmail.com" className="text-white/70 hover:text-cyan-400 transition-colors">
               <Mail size={24} />
             </a>
-            <a href="#" className="text-white/70 hover:text-cyan-400 transition-colors">
+            <a href="https://github.com/stefanoCestari03" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-cyan-400 transition-colors">
               <Github size={24} />
             </a>
           </div>
