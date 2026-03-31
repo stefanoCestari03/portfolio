@@ -34,7 +34,7 @@ export default function Portfolio() {
     const cvUrl = '/cv_stefano_cestari.pdf';
     const link = document.createElement('a');
     link.href = cvUrl;
-    link.download = 'CV_Stefano_Cestari.pdf';
+    link.download = 'StefanoCestariCV_2026.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

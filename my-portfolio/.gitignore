@@ -32,3 +32,5 @@ npm-debug.log*
 # Optional lockfiles
 # yarn.lock
 # pnpm-lock.yaml
+.vercel
+.env*.local
