@@ -31,10 +31,10 @@ export default function Portfolio() {
   };
 
   const handleDownloadCV = () => {
-    const cvUrl = '/cv_stefano_cestari.pdf';
+    const cvUrl = '/stefanocestaricv_2026_Autorizzazione.pdf';
     const link = document.createElement('a');
     link.href = cvUrl;
-    link.download = 'StefanoCestariCV_2026.pdf';
+    link.download = 'CV_Stefano_Cestari_2026.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -50,7 +50,8 @@ export default function Portfolio() {
     { name: 'Incident Response', level: 85, icon: <AlertTriangle />, category: 'Cybersecurity' },
     { name: 'Cisco Networking', level: 80, icon: <Network />, category: 'Networking' },
     { name: 'Python Scripting', level: 75, icon: <Code />, category: 'Development' },
-    { name: 'SQL & MySQL', level: 80, icon: <Database />, category: 'Database' },
+    { name: 'SQL & MySQL', level: 82, icon: <Database />, category: 'Database' },
+    { name: 'Database Design & Administration', level: 78, icon: <Database />, category: 'Database' },
     { name: 'Angular & React', level: 75, icon: <Code />, category: 'Frontend' },
     { name: 'Java & Spring Boot', level: 70, icon: <Code />, category: 'Backend' }
   ];
@@ -201,6 +202,26 @@ export default function Portfolio() {
       ],
       icon: <Shield />,
       color: 'from-red-500 to-orange-500'
+    },
+    {
+      company: 'Progetto Personale',
+      location: 'Remote',
+      role: 'Vibe Coding & Full-Stack Web App Development',
+      period: '2024 - Presente',
+      type: 'Progetto Personale',
+      responsibilities: [
+        'AI-assisted vibe coding: rapid prototyping and development of web applications using LLM tools',
+        'Full-stack web application development with React and modern JavaScript frameworks',
+        'Domain registration, DNS configuration and hosting management (shared, VPS, cloud)',
+        'Deployment pipelines: build, test and release workflows for production environments',
+        'MySQL and PostgreSQL database design, schema modelling and query optimisation',
+        'Database administration in production: user management, backup strategies, migrations',
+        'REST API design and integration between frontend and backend services',
+        'SSL/TLS certificate management and web server configuration (Apache, Nginx)',
+        'Performance monitoring and uptime management for live web applications'
+      ],
+      icon: <Code />,
+      color: 'from-emerald-500 to-cyan-500'
     }
   ];
 
@@ -272,7 +293,7 @@ export default function Portfolio() {
             </span>
           </h1>
           <p className="text-xl md:text-3xl text-white/80 mb-4 animate-fade-in-delay">
-            System Administrator | Network & Security System Engineer
+            Network & Security System Engineer
           </p>
           <p className="text-lg md:text-xl text-cyan-400 mb-8 animate-fade-in-delay">
             ICT Specialist | SOC Analyst | System Administrator
@@ -338,21 +359,21 @@ export default function Portfolio() {
               Outside of work, I enjoy playing guitar and singing, sports like volleyball and gym training, mountain excursions, and travel. 
               I strongly believe that continuous learning is essential for staying ahead in the fast-evolving IT industry.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-            <div className="text-center p-6 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm min-h-[180px] flex flex-col items-center justify-center">
-                <Shield size={40} className="mx-auto mb-3 text-cyan-400" />
-                <div className="text-2xl font-bold text-cyan-400 mb-2 whitespace-nowrap">Security</div>
-                <div className="text-white/60 text-sm">SOC & Firewall</div>
+            <div className="grid grid-cols-3 gap-6 mt-10">
+              <div className="text-center p-6 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm">
+                <Shield size={32} className="mx-auto mb-2 text-cyan-400" />
+                <div className="text-2xl font-bold text-cyan-400 mb-2">Security</div>
+                <div className="text-white/60">SOC & Firewall</div>
               </div>
-              <div className="text-center p-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl backdrop-blur-sm min-h-[180px] flex flex-col items-center justify-center">
-                <Server size={40} className="mx-auto mb-3 text-purple-400" />
-                <div className="text-2xl font-bold text-purple-400 mb-2 whitespace-nowrap">SysAdmin</div>
-                <div className="text-white/60 text-sm">Linux & Windows</div>
+              <div className="text-center p-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl backdrop-blur-sm">
+                <Server size={32} className="mx-auto mb-2 text-purple-400" />
+                <div className="text-2xl font-bold text-purple-400 mb-2">SysAdmin</div>
+                <div className="text-white/60">Linux & Windows</div>
               </div>
-              <div className="text-center p-6 bg-gradient-to-br from-pink-500/20 to-orange-500/20 rounded-2xl backdrop-blur-sm min-h-[180px] flex flex-col items-center justify-center">
-                <Network size={40} className="mx-auto mb-3 text-pink-400" />
-                <div className="text-2xl font-bold text-pink-400 mb-2 whitespace-nowrap">Network</div>
-                <div className="text-white/60 text-sm">Analysis & Configuring</div>
+              <div className="text-center p-6 bg-gradient-to-br from-pink-500/20 to-orange-500/20 rounded-2xl backdrop-blur-sm">
+                <Network size={32} className="mx-auto mb-2 text-pink-400" />
+                <div className="text-2xl font-bold text-pink-400 mb-2">Network</div>
+                <div className="text-white/60">Analysis & Configuring</div>
               </div>
             </div>
           </div>
