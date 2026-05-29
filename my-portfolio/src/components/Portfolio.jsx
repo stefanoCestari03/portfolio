@@ -64,144 +64,116 @@ export default function Portfolio() {
   ];
 
   const qualifications = [
-    { 
-      year: '2023-2025', 
-      title: 'MAT - Marconi Altaformazione Tecnologica', 
-      institution: 'Rovereto (TN)',
-      desc: 'Two-year intensive course as ICT Higher Technician. Specialized in software development, networking, cybersecurity. Projects with FBK and GPI. Skills: Java, Python, HTML, CSS, JavaScript, Angular, React, MySQL, AWS, VMware, Spring Boot. Level 2 CompTIA A+ and CompTIA Security+ certifications.'
+    {
+      year: '2022 - 2025',
+      title: 'MAT – Tecnico Superiore delle Infrastrutture di Reti e Cloud Computing',
+      institution: 'Marconi Altaformazione Tecnologica, Rovereto (TN)',
+      desc: 'Corso post-diploma biennale intensivo con professori universitari ed esperti del settore. Competenze acquisite: protocolli di rete, Java, MySQL (progettazione avanzata DB), HTML/CSS/JavaScript, Angular, React, Spring Boot, Python (crittografia), cloud computing AWS, virtualizzazione VMware. Progetti reali con FBK (Spring Boot) e GPI (Angular). Corsi di sicurezza informatica (Cyber Kill Chain) con Dedagroup e Trentino Digitale.'
     },
-    { 
-      year: '2017-2022', 
-      title: 'Istituto Marie Curie, Pergine Valsugana', 
-      institution: 'High School Diploma - Computer Science Expert',
-      desc: 'Three-year specialization in Computer Science: network protocols and Cisco configurations, programming (Java, C), web development (PHP, JavaScript, HTML, CSS), SQL databases, robot design, robotics laboratories, project management with Arduino projects.'
+    {
+      year: '2017 - 2022',
+      title: 'Perito Informatico',
+      institution: 'Istituto Marie Curie, Pergine Valsugana (TN)',
+      desc: 'Specializzazione informatica con studio di protocolli di rete e configurazioni Cisco, programmazione Java e C, sviluppo web (PHP, JS, CSS, HTML), gestione database SQL, robotica e project management. Progetto pratico: scheda Arduino per domotica con interfaccia web.'
     }
   ];
 
   const experiences = [
     {
       company: 'Xenos S.r.l.',
-      location: 'Via L. Feininger 32 ',
-      role: 'System Administrator and Networking Operator',
-      period: 'September 2025 - Present',
+      location: 'Via Laurence Feininger 32, Gardolo (TN)',
+      role: 'System Administrator & Network Engineer',
+      period: 'Luglio 2025 - Presente',
       type: 'Esperienza lavorativa',
       responsibilities: [
-        'Operation on Checkpoint Firewalls',
-        'WatchGuard Firewalls management and configuration',
-        'NAS Synology management and configuration',
-        'Backup monitoring with PRTG and Nakivo',
-        'Direct client-side system support and management',
-        'Security patch inventorying and vulnerability management',
-        'Network security analysis and remote support',
-        'Windows endpoint and server management',
-        'Troubleshooting and support for network issues, switches, routers, firewalls, access points(unifi), devices, networks',
-        'Linux VM infrastructure management and configuration',
-        'VMware vSphere environment management and troubleshooting',
-        'Ilo management for Dell servers',
-        'Idrc management for HPE servers',
-        'Call center support and ticketing system management',
-        'outdoor technical support and on-site interventions for clients needs',
-        'Network activity monitoring using Netscout and Paessler tools',
-        'Customer management and ticketing system (ClickUp)',
-        'Daily monitoring and activity reporting'
+        'Gestione completa ambienti Microsoft 365 (Exchange, Teams, SharePoint)',
+        'Configurazione e supporto caselle PEC ed email personalizzate clienti',
+        'Amministrazione Windows Server con Active Directory, GPO e policy di sicurezza',
+        'Configurazione e monitoraggio backup cloud con NAKIVO e NAS Synology / Hetzner',
+        'Verifica periodica backup e gestione procedure di restore',
+        'Preparazione, configurazione e assistenza diretta su endpoint Windows',
+        'Supporto remoto TeamViewer, aggiornamenti sicurezza e patching dispositivi',
+        'Configurazione e manutenzione Firewall WatchGuard (policy, VPN, traffic management)',
+        'Gestione Access Point Ubiquiti UniFi (deploy, SSID, VLAN, firmware)',
+        'Commissioning autonomo su nuovi clienti: setup completo infrastruttura IT',
+        'Manutenzione programmata e straordinaria con monitoraggio proattivo'
       ],
       icon: <Server />,
       color: 'from-purple-500 to-pink-500'
     },
     {
-      company: 'Bs Innova S.r.l.',
-      location: 'Via dei solteri 74',
-      role: 'Junior Network and Security System Engineer',
-      period: 'Gennaio 2024 - Marzo 2025',
+      company: 'Be-innova S.r.l.',
+      location: 'Via dei Solteri 74, Trento',
+      role: 'SOC Analyst L1 / Network & Security System Engineer',
+      period: 'Gennaio 2025 - Giugno 2025',
       type: 'Esperienza lavorativa',
       responsibilities: [
-        'Level 1 monitoring and event analysis (L1)',
-        'Operation on Checkpoint Firewalls (Gaia OS)',
-        'Alert triage and incident management',
-        'Security patch inventorying and vulnerability management',
-        'Bitdefender EDR management and alert analysis',
-        'Analysis of corporate SIEM alerts',
-        'Qualys and Nessus vulnerability system analysis',
-        'Elastic siem management and rule tuning',
-        'SG-BOX siem management and rule tuning',
-        'Data network monitoring, application and LAN/WAN status analysis',
-        'Network activity monitoring using Netscout and Paessler tools',
-        'Customer management and ticketing system (ClickUp)',
-        'Daily monitoring and activity reporting'
+        'Monitoraggio H24 su turni come SOC Analyst di primo livello (L1)',
+        'Analisi e triage degli alert da sistemi SIEM (Elastic, SGBOX)',
+        'Inserimento eccezioni a regole di sicurezza e rule tuning',
+        'Analisi alert Bitdefender e Microsoft Defender',
+        'Monitoraggio rete, apparati informatici e server clienti'
       ],
       icon: <Shield />,
       color: 'from-cyan-500 to-blue-500'
     },
     {
-      company: 'Bs Innova S.r.l.',
-      location: 'Via Ezio Maccani 135 (TN)',
-      role: 'Stage - Sistemista Linux',
-      period: 'Ottobre 2023 - Dicembre 2023',
-      type: 'Stage',
+      company: 'Be-innova S.r.l.',
+      location: 'Via dei Solteri 74, Trento',
+      role: 'Sistemista Linux / Web Server Administrator',
+      period: 'Ottobre 2024 - Dicembre 2024',
+      type: 'Esperienza lavorativa',
       responsibilities: [
-        'Professional experience in systematic Linux environment (debian based distros,web servers,containers)',
-        'cve vulnerability management and patching in specific GLPI (CVE-2022-35914) mitigation and remediation',
-        'Linux infrastructure management and configuration',
-        'Monitoring, support and minor maintenance of corporate infrastructures',
-        'Server virtualization management proxmox environment',
+        'Gestione aggiornamento server web Linux aziendale dopo vulnerabilità critica nel ticketing',
+        'Analisi della falla e studio del Proof of Concept (POC) e metodologie di exploit',
+        'Tesi di fine corso sulla vulnerabilità CVE identificata e relativo patching',
+        'Montaggio e cablaggio del rack di laboratorio'
       ],
       icon: <Server />,
       color: 'from-blue-500 to-purple-500'
     },
     {
-      company: 'Bs Innova S.r.l.',
-      location: 'Via dei Solteri 74',
-      role: 'Stage - Network operations and Security Systems',
+      company: 'Be-innova S.r.l.',
+      location: 'Via dei Solteri 74, Trento',
+      role: 'Tirocinante – Firewall & Network Design',
       period: 'Giugno 2024 - Luglio 2024',
       type: 'Stage',
       responsibilities: [
-        'Fortinet firewall best practices for IPS and IDS systems application control study and management',
-        'Creating network schemas and diagrams for internal use and customer delivery',
-        'reverse engineering of clients network infrastructures for security analysis and monitoring',
-        'Creation of network diagrams using microsoft visio',
-        'Dedicated lab environment development and testing creatinga lab rack with cisco, fortinet firewalls, routers and switches for network simulation',
+        'Autoformazione sulle best practice di configurazione Firewall Fortinet',
+        'Creazione schemi di rete dettagliati per uso interno e consegna clienti',
+        'Reverse engineering infrastrutture di rete clienti per analisi di sicurezza',
+        'Progettazione rack di laboratorio con dispositivi Cisco e Fortinet'
       ],
       icon: <Network />,
       color: 'from-purple-500 to-pink-500'
     },
     {
-      company: 'Bs Innova S.r.l.',
-      location: 'Via dei Solteri 74',
-      role: 'Stage - Gestione Server Linux',
+      company: 'Be-innova S.r.l.',
+      location: 'Via Ezio Maccani 195, Trento',
+      role: 'Tirocinante Sistemistico – Linux OS',
       period: 'Ottobre 2023 - Dicembre 2023',
       type: 'Stage',
       responsibilities: [
-        'Essential Linux server management',
-        'Proxmox local resources management',
-        'Storage system management including backup of essential data',
-        'Creation of Docker containers for various activities',
-        'Advanced endpoint and server monitoring with CheckMK, Zabbix, Grafana',
-        'Data exploration using Elasticsearch to identify potential system vulnerabilities',
-        'Vulnerability assessment with ELK system',
-        'Monitoring and reporting of customer data and activity management'
+        'Gestione server Linux virtualizzati per servizi web (Proxmox, Docker)',
+        'Progetto di aggiornamento sistema operativo e software applicativi',
+        'Formazione con affiancamento nell\'amministrazione di server Linux',
+        'Monitoraggio e manutenzione infrastrutture corporate'
       ],
       icon: <Activity />,
-      color: 'from-pink-500 to-red-500'
+      color: 'from-blue-500 to-cyan-500'
     },
     {
-      company: 'Bs Innova S.r.l.',
-      location: 'Via dei Solteri 74',
-      role: 'Stage - Network and Security System Engineer',
-      period: 'Gennaio 2024 - Marzo 2024',
+      company: 'Be-innova S.r.l.',
+      location: 'Via Ezio Maccani 195, Trento',
+      role: 'Tirocinante – Networking',
+      period: 'Maggio 2023',
       type: 'Stage',
       responsibilities: [
-        'Level 1 monitoring project management',
-        'H24 monitoring management and operations',
-        'Checkpoint firewall fundamental operations',
-        'SecGX firewall inventorying and security analysis',
-        'Trellix IPS/IDS and Cisco inventorying',
-        'Advanced security patch inventorying',
-        'Vulnerability management with Qualys and Nessus',
-        'Direct ticketing with customer contacts',
-        'Parallel activity as consultant and support for activity montage'
+        'Configurazione di reti e creazione schemi basati su infrastrutture esistenti',
+        'Ricerca e implementazione in laboratorio di migliorie per i sistemi'
       ],
-      icon: <Shield />,
-      color: 'from-red-500 to-orange-500'
+      icon: <Network />,
+      color: 'from-pink-500 to-red-500'
     },
     {
       company: 'Progetto Personale',
@@ -210,15 +182,15 @@ export default function Portfolio() {
       period: '2024 - Presente',
       type: 'Progetto Personale',
       responsibilities: [
-        'AI-assisted vibe coding: rapid prototyping and development of web applications using LLM tools',
-        'Full-stack web application development with React and modern JavaScript frameworks',
-        'Domain registration, DNS configuration and hosting management (shared, VPS, cloud)',
-        'Deployment pipelines: build, test and release workflows for production environments',
-        'MySQL and PostgreSQL database design, schema modelling and query optimisation',
-        'Database administration in production: user management, backup strategies, migrations',
-        'REST API design and integration between frontend and backend services',
-        'SSL/TLS certificate management and web server configuration (Apache, Nginx)',
-        'Performance monitoring and uptime management for live web applications'
+        'AI-assisted vibe coding: rapid prototyping di web app con strumenti LLM',
+        'Sviluppo full-stack con React e framework JavaScript moderni',
+        'Registrazione domini, configurazione DNS e gestione hosting (shared, VPS, cloud)',
+        'Deployment pipeline: build, test e release per ambienti di produzione',
+        'Progettazione e gestione database MySQL e PostgreSQL di medie dimensioni',
+        'Database administration: user management, backup, migrazioni schema',
+        'Progettazione REST API e integrazione tra frontend e backend',
+        'Gestione certificati SSL/TLS e configurazione web server (Apache, Nginx)',
+        'Monitoraggio performance e uptime per applicazioni web in produzione'
       ],
       icon: <Code />,
       color: 'from-emerald-500 to-cyan-500'
@@ -338,16 +310,16 @@ export default function Portfolio() {
             </p>
 
             <p className="text-xl text-white/80 leading-relaxed mb-6">
-              During my experience at <span className="text-cyan-400 font-semibold">Bs Innova S.r.l.</span> (January – June 2025), 
-              I worked across multiple domains including Network and Security System Engineering, Linux system administration, 
-              software development, and advanced security monitoring.
+              During my experience at <span className="text-cyan-400 font-semibold">Be-innova S.r.l.</span> (January – June 2025),
+              I worked as SOC Analyst L1 across multiple domains including Network and Security System Engineering, Linux system administration,
+              and advanced security monitoring with SIEM systems (Elastic, SGBOX), Bitdefender and Microsoft Defender.
             </p>
 
             <p className="text-xl text-white/80 leading-relaxed mb-6">
-              Since <span className="text-cyan-400 font-semibold">September 1st, 2025</span>, I have been working at 
-              <span className="text-cyan-400 font-semibold"> Xenos S.r.l.</span> under a one–year contract as a System Administrator and Networking Operator.
-              My responsibilities involve managing Windows Server endpoints, Linux VM infrastructures, VMware environments, Synology NAS systems, 
-              Nakivo backup solutions, and various on-demand client-side systems, providing flexible and reliable technical support.
+              Since <span className="text-cyan-400 font-semibold">July 2025</span>, I have been working at
+              <span className="text-cyan-400 font-semibold"> Xenos S.r.l.</span> as a System Administrator and Network Engineer.
+              My responsibilities include managing Microsoft 365 environments, Windows Server with Active Directory,
+              WatchGuard firewalls, Ubiquiti UniFi access points, NAKIVO backup with NAS Synology, and full IT commissioning for business clients.
             </p>
 
             <p className="text-xl text-white/80 leading-relaxed mb-6">
