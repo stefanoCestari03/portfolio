@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Code, Brain, Award, Briefcase, Mail, Linkedin, Github, ChevronDown, Sparkles, Zap, Target, Shield, Server, Network, Database, Eye, AlertTriangle, Activity, Download, FileText } from 'lucide-react';
+import { Code, Brain, Award, Briefcase, Mail, Linkedin, Github, ChevronDown, Sparkles, Zap, Shield, Server, Network, Database, Eye, AlertTriangle, Activity, ArrowUpRight } from 'lucide-react';
 import profileImg from "../assets/profile.jpg";
+
+function SectionHeading({ index, title }) {
+  return (
+    <div className="mb-14 text-center">
+      <div className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">{index}</div>
+      <h2 className="text-3xl md:text-5xl font-semibold uppercase tracking-tight">{title}</h2>
+    </div>
+  );
+}
 
 export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0);
@@ -9,7 +18,7 @@ export default function Portfolio() {
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      
+
       const sections = ['home', 'about', 'experience', 'skills', 'qualifications'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
@@ -198,19 +207,19 @@ export default function Portfolio() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Navigation Bar */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-black/30 backdrop-blur-lg border-b border-white/10' : ''}`}>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-black border-b border-white/15' : ''}`}>
+        <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+          <div className="text-lg font-semibold tracking-[0.3em]">
             SC
           </div>
-          <div className="hidden md:flex gap-8">
+          <div className="hidden md:flex gap-10">
             {['home', 'about', 'experience', 'skills', 'qualifications'].map(section => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className={`capitalize transition-all duration-300 hover:text-cyan-400 ${activeSection === section ? 'text-cyan-400 font-semibold' : 'text-white/70'}`}
+                className={`uppercase text-xs tracking-[0.18em] transition-colors duration-200 hover:text-white ${activeSection === section ? 'text-white' : 'text-white/45'}`}
               >
                 {section}
               </button>
@@ -218,9 +227,9 @@ export default function Portfolio() {
           </div>
           <button
             onClick={handleDownloadCV}
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full hover:shadow-lg hover:shadow-cyan-500/50 transition-all hover:scale-105"
+            className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-white/70 hover:text-white transition-colors"
           >
-            <Download size={18} />
+            <ArrowUpRight size={14} />
             <span className="hidden md:inline">Download CV</span>
           </button>
         </div>
@@ -228,27 +237,9 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)]"></div>
-        <div className="absolute inset-0">
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute bg-white rounded-full animate-pulse"
-              style={{
-                width: Math.random() * 4 + 1 + 'px',
-                height: Math.random() * 4 + 1 + 'px',
-                left: Math.random() * 100 + '%',
-                top: Math.random() * 100 + '%',
-                animationDelay: Math.random() * 3 + 's',
-                animationDuration: Math.random() * 3 + 2 + 's'
-              }}
-            />
-          ))}
-        </div>
-        
-        <div className="relative z-10 text-center px-6 my-20" style={{ transform: `translateY(${scrollY * 0.5}px)` }}>
-          <div className="mb-6 inline-block">
-            {/* <div className="w-32 h-32 rounded-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 p-1 animate-spin-slow"> */}
+        <div className="relative z-10 text-center px-6 my-20">
+          <div className="mb-8 inline-block">
+            {/* Profile photo — kept as-is */}
             <div className="w-32 h-32 rounded-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 p-1">
               <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-bold">
                <img
@@ -259,93 +250,89 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
-          <h1 className="text-5xl md:text-8xl font-bold mb-6 animate-fade-in">
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Stefano Cestari
-            </span>
+          <h1 className="text-5xl md:text-8xl font-semibold uppercase tracking-tight mb-6 animate-fade-in">
+            Stefano Cestari
           </h1>
-          <p className="text-xl md:text-3xl text-white/80 mb-4 animate-fade-in-delay">
-            Network & Security System Engineer
+          <p className="text-sm md:text-lg uppercase tracking-[0.2em] text-white/55 mb-3 animate-fade-in-delay">
+            Network &amp; Security System Engineer
           </p>
-          <p className="text-lg md:text-xl text-cyan-400 mb-8 animate-fade-in-delay">
+          <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-white/35 mb-10 animate-fade-in-delay">
             ICT Specialist | SOC Analyst | System Administrator
           </p>
-          <div className="flex gap-4 justify-center mb-8 animate-fade-in-delay-2">
-            <a href="https://www.linkedin.com/in/stefano-cestari-a7a730264/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 backdrop-blur-lg rounded-full hover:bg-white/20 transition-all hover:scale-110">
-              <Linkedin size={24} />
+          <div className="flex gap-6 justify-center mb-10 animate-fade-in-delay-2">
+            <a href="https://www.linkedin.com/in/stefano-cestari-a7a730264/" target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-60 transition-opacity">
+              <Linkedin size={22} />
             </a>
-            <a href="mailto:stefano.cestari2203@gmail.com" className="p-3 bg-white/10 backdrop-blur-lg rounded-full hover:bg-white/20 transition-all hover:scale-110">
-              <Mail size={24} />
+            <a href="mailto:stefano.cestari2203@gmail.com" className="text-white hover:opacity-60 transition-opacity">
+              <Mail size={22} />
             </a>
-            <a href="https://github.com/stefanoCestari03" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 backdrop-blur-lg rounded-full hover:bg-white/20 transition-all hover:scale-110">
-              <Github size={24} />
+            <a href="https://github.com/stefanoCestari03" target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-60 transition-opacity">
+              <Github size={22} />
             </a>
           </div>
           <button
             onClick={handleDownloadCV}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-lg font-semibold hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105 mb-12 animate-fade-in-delay-2"
+            className="inline-flex items-center gap-3 px-7 py-3 border border-white/25 uppercase text-xs tracking-[0.2em] hover:bg-white hover:text-black transition-colors mb-16 animate-fade-in-delay-2"
           >
-            <FileText size={24} />
+            <ArrowUpRight size={16} />
             Download Full CV
           </button>
-          <button 
+          <button
             onClick={() => scrollToSection('about')}
-            className="animate-bounce block mx-auto"
+            className="block mx-auto"
           >
-            <ChevronDown size={40} className="text-cyan-400" />
+            <ChevronDown size={28} className="text-white/40" />
           </button>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="min-h-screen flex items-center py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-5xl font-bold mb-12 text-center bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            About Me
-          </h2>
-          <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/10 hover:border-purple-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/20">
-            <p className="text-xl text-white/80 leading-relaxed mb-6">
-              I'm a Technical IT Specialist with a strong passion for ICT and a solid background in cybersecurity operations. 
+      <section id="about" className="min-h-screen flex items-center py-24 px-6 border-t border-white/10">
+        <div className="max-w-5xl mx-auto w-full">
+          <SectionHeading index="01" title="About Me" />
+          <div className="border border-white/15 p-8 md:p-12 hover:border-white/40 transition-colors duration-300">
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              I'm a Technical IT Specialist with a strong passion for ICT and a solid background in cybersecurity operations.
               My expertise includes SOC L1 analysis, incident triage, and SIEM rule management, ensuring resilient and secure infrastructures.
             </p>
 
-            <p className="text-xl text-white/80 leading-relaxed mb-6">
-              During my experience at <span className="text-cyan-400 font-semibold">Be-innova S.r.l.</span> (January – June 2025),
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              During my experience at <span className="text-white font-semibold">Be-innova S.r.l.</span> (January – June 2025),
               I worked as SOC Analyst L1 across multiple domains including Network and Security System Engineering, Linux system administration,
               and advanced security monitoring with SIEM systems (Elastic, SGBOX), Bitdefender and Microsoft Defender.
             </p>
 
-            <p className="text-xl text-white/80 leading-relaxed mb-6">
-              Since <span className="text-cyan-400 font-semibold">July 2025</span>, I have been working at
-              <span className="text-cyan-400 font-semibold"> Xenos S.r.l.</span> as a System Administrator and Network Engineer.
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              Since <span className="text-white font-semibold">July 2025</span>, I have been working at
+              <span className="text-white font-semibold"> Xenos S.r.l.</span> as a System Administrator and Network Engineer.
               My responsibilities include managing Microsoft 365 environments, Windows Server with Active Directory,
               WatchGuard firewalls, Ubiquiti UniFi access points, NAKIVO backup with NAS Synology, and full IT commissioning for business clients.
             </p>
 
-            <p className="text-xl text-white/80 leading-relaxed mb-6">
-              My technical skill set spans Check Point and SecGX firewall administration, IPS/IDS operations with Trellix and Cisco, 
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              My technical skill set spans Check Point and SecGX firewall administration, IPS/IDS operations with Trellix and Cisco,
               vulnerability management with Qualys and Nessus, and extensive network monitoring using Netscout and Paessler solutions.
             </p>
 
-            <p className="text-xl text-white/80 leading-relaxed">
-              Outside of work, I enjoy playing guitar and singing, sports like volleyball and gym training, mountain excursions, and travel. 
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed">
+              Outside of work, I enjoy playing guitar and singing, sports like volleyball and gym training, mountain excursions, and travel.
               I strongly believe that continuous learning is essential for staying ahead in the fast-evolving IT industry.
             </p>
-            <div className="grid grid-cols-3 gap-6 mt-10">
-              <div className="text-center p-6 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm">
-                <Shield size={32} className="mx-auto mb-2 text-cyan-400" />
-                <div className="text-2xl font-bold text-cyan-400 mb-2">Security</div>
-                <div className="text-white/60">SOC & Firewall</div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+              <div className="text-center p-6 border border-white/15">
+                <Shield size={28} className="mx-auto mb-3 text-white" />
+                <div className="text-lg font-semibold uppercase tracking-wide mb-1">Security</div>
+                <div className="text-white/50 text-sm uppercase tracking-wide">SOC & Firewall</div>
               </div>
-              <div className="text-center p-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl backdrop-blur-sm">
-                <Server size={32} className="mx-auto mb-2 text-purple-400" />
-                <div className="text-2xl font-bold text-purple-400 mb-2">SysAdmin</div>
-                <div className="text-white/60">Linux & Windows</div>
+              <div className="text-center p-6 border border-white/15">
+                <Server size={28} className="mx-auto mb-3 text-white" />
+                <div className="text-lg font-semibold uppercase tracking-wide mb-1">SysAdmin</div>
+                <div className="text-white/50 text-sm uppercase tracking-wide">Linux & Windows</div>
               </div>
-              <div className="text-center p-6 bg-gradient-to-br from-pink-500/20 to-orange-500/20 rounded-2xl backdrop-blur-sm">
-                <Network size={32} className="mx-auto mb-2 text-pink-400" />
-                <div className="text-2xl font-bold text-pink-400 mb-2">Network</div>
-                <div className="text-white/60">Analysis & Configuring</div>
+              <div className="text-center p-6 border border-white/15">
+                <Network size={28} className="mx-auto mb-3 text-white" />
+                <div className="text-lg font-semibold uppercase tracking-wide mb-1">Network</div>
+                <div className="text-white/50 text-sm uppercase tracking-wide">Analysis & Configuring</div>
               </div>
             </div>
           </div>
@@ -353,35 +340,33 @@ export default function Portfolio() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="min-h-screen py-20 px-6">
+      <section id="experience" className="min-h-screen py-24 px-6 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl font-bold mb-12 text-center bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            Work Experience
-          </h2>
-          <div className="space-y-8">
+          <SectionHeading index="02" title="Work Experience" />
+          <div className="space-y-6">
             {experiences.map((exp, i) => (
-              <div key={i} className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-cyan-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/20">
+              <div key={i} className="border border-white/15 p-8 hover:border-white/40 transition-colors duration-300">
                 <div className="flex flex-col md:flex-row items-start gap-6 mb-6">
-                  <div className={`p-4 bg-gradient-to-br ${exp.color} rounded-2xl flex-shrink-0`}>
+                  <div className="p-4 border border-white/20 flex-shrink-0 text-white">
                     {exp.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2">{exp.role}</h3>
-                    <p className="text-xl text-cyan-400 mb-1">{exp.company}</p>
-                    <p className="text-white/60 mb-2">{exp.location}</p>
+                    <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-tight mb-2">{exp.role}</h3>
+                    <p className="text-base uppercase tracking-[0.15em] text-white/70 mb-1">{exp.company}</p>
+                    <p className="text-white/45 text-sm mb-3">{exp.location}</p>
                     <div className="flex flex-wrap gap-2 items-center">
-                      <span className="px-3 py-1 bg-purple-500/20 rounded-full text-sm">{exp.period}</span>
-                      <span className="px-3 py-1 bg-cyan-500/20 rounded-full text-sm">{exp.type}</span>
+                      <span className="px-3 py-1 border border-white/20 text-[11px] uppercase tracking-wide text-white/70">{exp.period}</span>
+                      <span className="px-3 py-1 border border-white/20 text-[11px] uppercase tracking-wide text-white/70">{exp.type}</span>
                     </div>
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 gap-3">
+                <div className="grid md:grid-cols-2 gap-x-8 gap-y-3">
                   {exp.responsibilities.map((resp, j) => (
-                    <div key={j} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-all">
-                      <div className="text-cyan-400 mt-1 flex-shrink-0">
-                        <Zap size={16} />
+                    <div key={j} className="flex items-start gap-3 border-l border-white/15 pl-4 py-1">
+                      <div className="text-white/40 mt-1 flex-shrink-0">
+                        <Zap size={14} />
                       </div>
-                      <p className="text-sm text-white/80">{resp}</p>
+                      <p className="text-sm text-white/70">{resp}</p>
                     </div>
                   ))}
                 </div>
@@ -397,7 +382,7 @@ export default function Portfolio() {
           <h2 className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
             Skills & Expertise
           </h2>
-          
+
           <div className="mb-20">
             <h3 className="text-3xl font-bold mb-8 text-cyan-400">Technical Skills</h3>
             <div className="grid gap-6">
@@ -414,7 +399,7 @@ export default function Portfolio() {
                     </div>
                   </div>
                   <div className="h-3 bg-white/5 rounded-full overflow-hidden">
-                    <div 
+                    <div
                       className="h-full bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full transition-all duration-1000"
                       style={{ width: `${skill.level}%` }}
                     />
@@ -428,7 +413,7 @@ export default function Portfolio() {
             <h3 className="text-3xl font-bold mb-8 text-purple-400">Soft Skills</h3>
             <div className="grid md:grid-cols-2 gap-6">
               {softSkills.map((skill, i) => (
-                <div 
+                <div
                   key={i}
                   className="group relative bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-105 overflow-hidden"
                 >
@@ -447,21 +432,19 @@ export default function Portfolio() {
       </section>
 
       {/* Qualifications Section */}
-      <section id="qualifications" className="min-h-screen py-20 px-6">
+      <section id="qualifications" className="min-h-screen py-24 px-6 border-t border-white/10">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            Education & Qualifications
-          </h2>
+          <SectionHeading index="03" title="Education & Qualifications" />
           <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 via-purple-400 to-pink-400"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-white/20"></div>
             {qualifications.map((qual, i) => (
               <div key={i} className="relative pl-20 pb-12 group">
-                <div className="absolute left-6 w-5 h-5 bg-gradient-to-br from-cyan-400 to-purple-400 rounded-full border-4 border-slate-900 group-hover:scale-150 transition-transform duration-300"></div>
-                <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300 hover:scale-105">
-                  <div className="text-cyan-400 font-bold mb-2">{qual.year}</div>
-                  <h3 className="text-2xl font-bold mb-2">{qual.title}</h3>
-                  <p className="text-purple-400 mb-3">{qual.institution}</p>
-                  <p className="text-white/70">{qual.desc}</p>
+                <div className="absolute left-[26px] top-1.5 w-3 h-3 bg-white rounded-full border-4 border-black"></div>
+                <div className="border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
+                  <div className="text-white font-semibold uppercase tracking-[0.15em] text-sm mb-2">{qual.year}</div>
+                  <h3 className="text-lg md:text-xl font-semibold uppercase tracking-tight mb-2">{qual.title}</h3>
+                  <p className="text-white/55 mb-3 text-sm uppercase tracking-wide">{qual.institution}</p>
+                  <p className="text-white/65 text-sm leading-relaxed">{qual.desc}</p>
                 </div>
               </div>
             ))}
@@ -470,25 +453,25 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-white/10 bg-black/20 backdrop-blur-xl">
+      <footer className="py-14 px-6 border-t border-white/15">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="flex justify-center gap-6 mb-6">
-            <a href="https://www.linkedin.com/in/stefano-cestari-a7a730264/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-cyan-400 transition-colors">
-              <Linkedin size={24} />
+          <div className="flex justify-center gap-8 mb-6">
+            <a href="https://www.linkedin.com/in/stefano-cestari-a7a730264/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
+              <Linkedin size={20} />
             </a>
-            <a href="mailto:stefano.cestari2203@gmail.com" className="text-white/70 hover:text-cyan-400 transition-colors">
-              <Mail size={24} />
+            <a href="mailto:stefano.cestari2203@gmail.com" className="text-white/60 hover:text-white transition-colors">
+              <Mail size={20} />
             </a>
-            <a href="https://github.com/stefanoCestari03" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-cyan-400 transition-colors">
-              <Github size={24} />
+            <a href="https://github.com/stefanoCestari03" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
+              <Github size={20} />
             </a>
           </div>
-          <p className="text-white/50 mb-4">© 2025 Cestari Stefano - Network & Security System Engineer</p>
+          <p className="text-[11px] uppercase tracking-[0.2em] text-white/40 mb-4">© Copyright Stefano Cestari — All Rights Reserved</p>
           <button
             onClick={handleDownloadCV}
-            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors"
           >
-            <Download size={18} />
+            <ArrowUpRight size={14} />
             Download CV
           </button>
         </div>
@@ -507,12 +490,6 @@ export default function Portfolio() {
         }
         .animate-fade-in-delay-2 {
           animation: fade-in 1s ease-out 0.6s backwards;
-        }
-        .animate-spin-slow {
-          animation: spin 8s linear infinite;
-        }
-        @keyframes spin {
-          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>
