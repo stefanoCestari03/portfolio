@@ -66,10 +66,10 @@ export default function Portfolio() {
   ];
 
   const softSkills = [
-    { name: 'Problem Solving', icon: <Brain />, color: 'from-purple-500 to-pink-500' },
-    { name: 'Team Collaboration', icon: <Briefcase />, color: 'from-blue-500 to-cyan-500' },
-    { name: 'Critical Thinking', icon: <Sparkles />, color: 'from-orange-500 to-red-500' },
-    { name: 'Communication', icon: <Award />, color: 'from-green-500 to-emerald-500' }
+    { name: 'Problem Solving', icon: <Brain /> },
+    { name: 'Team Collaboration', icon: <Briefcase /> },
+    { name: 'Critical Thinking', icon: <Sparkles /> },
+    { name: 'Communication', icon: <Award /> }
   ];
 
   const qualifications = [
@@ -107,8 +107,7 @@ export default function Portfolio() {
         'Commissioning autonomo su nuovi clienti: setup completo infrastruttura IT',
         'Manutenzione programmata e straordinaria con monitoraggio proattivo'
       ],
-      icon: <Server />,
-      color: 'from-purple-500 to-pink-500'
+      icon: <Server />
     },
     {
       company: 'Be-innova S.r.l.',
@@ -123,8 +122,7 @@ export default function Portfolio() {
         'Analisi alert Bitdefender e Microsoft Defender',
         'Monitoraggio rete, apparati informatici e server clienti'
       ],
-      icon: <Shield />,
-      color: 'from-cyan-500 to-blue-500'
+      icon: <Shield />
     },
     {
       company: 'Be-innova S.r.l.',
@@ -138,8 +136,7 @@ export default function Portfolio() {
         'Tesi di fine corso sulla vulnerabilità CVE identificata e relativo patching',
         'Montaggio e cablaggio del rack di laboratorio'
       ],
-      icon: <Server />,
-      color: 'from-blue-500 to-purple-500'
+      icon: <Server />
     },
     {
       company: 'Be-innova S.r.l.',
@@ -153,8 +150,7 @@ export default function Portfolio() {
         'Reverse engineering infrastrutture di rete clienti per analisi di sicurezza',
         'Progettazione rack di laboratorio con dispositivi Cisco e Fortinet'
       ],
-      icon: <Network />,
-      color: 'from-purple-500 to-pink-500'
+      icon: <Network />
     },
     {
       company: 'Be-innova S.r.l.',
@@ -168,8 +164,7 @@ export default function Portfolio() {
         'Formazione con affiancamento nell\'amministrazione di server Linux',
         'Monitoraggio e manutenzione infrastrutture corporate'
       ],
-      icon: <Activity />,
-      color: 'from-blue-500 to-cyan-500'
+      icon: <Activity />
     },
     {
       company: 'Be-innova S.r.l.',
@@ -181,8 +176,7 @@ export default function Portfolio() {
         'Configurazione di reti e creazione schemi basati su infrastrutture esistenti',
         'Ricerca e implementazione in laboratorio di migliorie per i sistemi'
       ],
-      icon: <Network />,
-      color: 'from-pink-500 to-red-500'
+      icon: <Network />
     },
     {
       company: 'Progetto Personale',
@@ -201,8 +195,7 @@ export default function Portfolio() {
         'Gestione certificati SSL/TLS e configurazione web server (Apache, Nginx)',
         'Monitoraggio performance e uptime per applicazioni web in produzione'
       ],
-      icon: <Code />,
-      color: 'from-emerald-500 to-cyan-500'
+      icon: <Code />
     }
   ];
 
@@ -240,8 +233,8 @@ export default function Portfolio() {
         <div className="relative z-10 text-center px-6 my-20">
           <div className="mb-8 inline-block">
             {/* Profile photo — kept as-is */}
-            <div className="w-32 h-32 rounded-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 p-1">
-              <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-5xl font-bold">
+            <div className="w-32 h-32 rounded-full border border-white/25 p-1">
+              <div className="w-full h-full rounded-full bg-black flex items-center justify-center text-5xl font-bold overflow-hidden">
                <img
                   src={profileImg}
                   alt="Profile"
@@ -377,30 +370,28 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="min-h-screen py-20 px-6">
+      <section id="skills" className="min-h-screen py-24 px-6 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            Skills & Expertise
-          </h2>
+          <SectionHeading index="03" title="Skills & Expertise" />
 
-          <div className="mb-20">
-            <h3 className="text-3xl font-bold mb-8 text-cyan-400">Technical Skills</h3>
-            <div className="grid gap-6">
+          <div className="mb-16">
+            <h3 className="text-xs uppercase tracking-[0.3em] text-white/40 mb-8">Technical Skills</h3>
+            <div className="grid gap-4">
               {hardSkills.map((skill, i) => (
-                <div key={i} className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105">
+                <div key={i} className="border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="text-cyan-400">{skill.icon}</div>
+                    <div className="text-white flex-shrink-0">{skill.icon}</div>
                     <div className="flex-1">
-                      <div className="flex justify-between items-center mb-1">
-                        <span className="text-xl font-semibold">{skill.name}</span>
-                        <span className="text-cyan-400 text-sm">{skill.level}%</span>
+                      <div className="flex justify-between items-center gap-3 mb-1">
+                        <span className="text-base md:text-lg font-semibold uppercase tracking-wide">{skill.name}</span>
+                        <span className="text-white/50 text-sm flex-shrink-0">{skill.level}%</span>
                       </div>
-                      <span className="text-sm text-white/60">{skill.category}</span>
+                      <span className="text-xs text-white/45 uppercase tracking-wide">{skill.category}</span>
                     </div>
                   </div>
-                  <div className="h-3 bg-white/5 rounded-full overflow-hidden">
+                  <div className="h-1 bg-white/15 overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full transition-all duration-1000"
+                      className="h-full bg-white transition-all duration-1000"
                       style={{ width: `${skill.level}%` }}
                     />
                   </div>
@@ -410,20 +401,17 @@ export default function Portfolio() {
           </div>
 
           <div>
-            <h3 className="text-3xl font-bold mb-8 text-purple-400">Soft Skills</h3>
-            <div className="grid md:grid-cols-2 gap-6">
+            <h3 className="text-xs uppercase tracking-[0.3em] text-white/40 mb-8">Soft Skills</h3>
+            <div className="grid md:grid-cols-2 gap-4">
               {softSkills.map((skill, i) => (
                 <div
                   key={i}
-                  className="group relative bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-105 overflow-hidden"
+                  className="border border-white/15 p-8 hover:border-white/40 transition-colors duration-300"
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                  <div className="relative z-10">
-                    <div className={`text-4xl mb-4 bg-gradient-to-br ${skill.color} bg-clip-text text-transparent`}>
-                      {skill.icon}
-                    </div>
-                    <h4 className="text-2xl font-bold">{skill.name}</h4>
+                  <div className="text-white mb-4">
+                    {skill.icon}
                   </div>
+                  <h4 className="text-lg font-semibold uppercase tracking-tight">{skill.name}</h4>
                 </div>
               ))}
             </div>
@@ -434,7 +422,7 @@ export default function Portfolio() {
       {/* Qualifications Section */}
       <section id="qualifications" className="min-h-screen py-24 px-6 border-t border-white/10">
         <div className="max-w-4xl mx-auto">
-          <SectionHeading index="03" title="Education & Qualifications" />
+          <SectionHeading index="04" title="Education & Qualifications" />
           <div className="relative">
             <div className="absolute left-8 top-0 bottom-0 w-px bg-white/20"></div>
             {qualifications.map((qual, i) => (
