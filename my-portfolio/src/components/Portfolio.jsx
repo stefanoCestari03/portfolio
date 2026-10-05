@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Code, Brain, Award, Briefcase, Mail, Linkedin, Github, ChevronDown, Sparkles, Zap, Shield, Server, Network, Database, Eye, AlertTriangle, Activity, ArrowUpRight } from 'lucide-react';
+import { Code, Brain, Award, Briefcase, Mail, Linkedin, Github, ChevronDown, Sparkles, Zap, Shield, Server, Network, Database, Eye, AlertTriangle, Activity, ArrowUpRight, Box, Smartphone } from 'lucide-react';
 import profileImg from "../assets/profile.jpg";
 
 function SectionHeading({ index, title }) {
@@ -19,7 +19,7 @@ export default function Portfolio() {
     const handleScroll = () => {
       setScrollY(window.scrollY);
 
-      const sections = ['home', 'about', 'experience', 'skills', 'qualifications'];
+      const sections = ['home', 'experience', 'qualifications', 'skills', 'about'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -50,19 +50,22 @@ export default function Portfolio() {
   };
 
   const hardSkills = [
-    { name: 'Windows Server & Endpoint', level: 90, icon: <Server />, category: 'System Admin' },
-    { name: 'Linux Administration', level: 85, icon: <Server />, category: 'System Admin' },
-    { name: 'VMware & Nakivo', level: 85, icon: <Database />, category: 'Virtualization' },
-    { name: 'WatchGuard Firewall', level: 80, icon: <Shield />, category: 'Security' },
-    { name: 'WithSecure EDR', level: 85, icon: <Eye />, category: 'Security' },
-    { name: 'SOC Analysis & SIEM', level: 90, icon: <Activity />, category: 'Cybersecurity' },
-    { name: 'Incident Response', level: 85, icon: <AlertTriangle />, category: 'Cybersecurity' },
-    { name: 'Cisco Networking', level: 80, icon: <Network />, category: 'Networking' },
-    { name: 'Python Scripting', level: 75, icon: <Code />, category: 'Development' },
-    { name: 'SQL & MySQL', level: 82, icon: <Database />, category: 'Database' },
-    { name: 'Database Design & Administration', level: 78, icon: <Database />, category: 'Database' },
-    { name: 'Angular & React', level: 75, icon: <Code />, category: 'Frontend' },
-    { name: 'Java & Spring Boot', level: 70, icon: <Code />, category: 'Backend' }
+    { name: 'Windows Server & Endpoint', icon: <Server />, category: 'System Admin' },
+    { name: 'Linux Administration', icon: <Server />, category: 'System Admin' },
+    { name: 'VMware & Nakivo', icon: <Database />, category: 'Virtualization' },
+    { name: 'WatchGuard Firewall', icon: <Shield />, category: 'Security' },
+    { name: 'WithSecure EDR', icon: <Eye />, category: 'Security' },
+    { name: 'SOC Analysis & SIEM', icon: <Activity />, category: 'Cybersecurity' },
+    { name: 'Incident Response', icon: <AlertTriangle />, category: 'Cybersecurity' },
+    { name: 'Cisco Networking', icon: <Network />, category: 'Networking' },
+    { name: 'Python Scripting', icon: <Code />, category: 'Development' },
+    { name: 'SQL & MySQL', icon: <Database />, category: 'Database' },
+    { name: 'Database Design & Administration', icon: <Database />, category: 'Database' },
+    { name: 'Angular & React', icon: <Code />, category: 'Frontend' },
+    { name: 'Java & Spring Boot', icon: <Code />, category: 'Backend' },
+    { name: 'Docker & Microservizi', icon: <Box />, category: 'DevOps' },
+    { name: 'Node.js', icon: <Code />, category: 'Backend' },
+    { name: 'Flutter', icon: <Smartphone />, category: 'Mobile' }
   ];
 
   const softSkills = [
@@ -73,6 +76,18 @@ export default function Portfolio() {
   ];
 
   const qualifications = [
+    {
+      year: '2026 - In corso',
+      title: 'Network Security Essentials – Certificazione Avanzata',
+      institution: 'WatchGuard Technologies',
+      desc: 'Certificazione avanzata sulla sicurezza delle reti: hardening del perimetro, gestione policy firewall, VPN e traffic management, best practice di network security su piattaforma WatchGuard.'
+    },
+    {
+      year: 'Conseguita',
+      title: 'CCNA – Cisco Certified Network Associate',
+      institution: 'Cisco',
+      desc: 'Certificazione sulle fondamenta del networking: routing e switching, IP addressing, sicurezza di base delle reti e troubleshooting su infrastrutture Cisco.'
+    },
     {
       year: '2022 - 2025',
       title: 'MAT – Tecnico Superiore delle Infrastrutture di Reti e Cloud Computing',
@@ -186,7 +201,10 @@ export default function Portfolio() {
       type: 'Progetto Personale',
       responsibilities: [
         'AI-assisted vibe coding: rapid prototyping di web app con strumenti LLM',
-        'Sviluppo full-stack con React e framework JavaScript moderni',
+        'Sviluppo full-stack: frontend con Vite/React, backend con Node.js e Spring Boot',
+        'Containerizzazione di microservizi con Docker per ambienti di sviluppo e produzione',
+        'Primi progetti mobile con Flutter',
+        'Sviluppo di piccoli tool interni per automatizzare e migliorare processi aziendali (approccio DevOps)',
         'Registrazione domini, configurazione DNS e gestione hosting (shared, VPS, cloud)',
         'Deployment pipeline: build, test e release per ambienti di produzione',
         'Progettazione e gestione database MySQL e PostgreSQL di medie dimensioni',
@@ -208,7 +226,7 @@ export default function Portfolio() {
             SC
           </div>
           <div className="hidden md:flex gap-10">
-            {['home', 'about', 'experience', 'skills', 'qualifications'].map(section => (
+            {['home', 'experience', 'qualifications', 'skills', 'about'].map(section => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -279,63 +297,10 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="min-h-screen flex items-center py-24 px-6 border-t border-white/10">
-        <div className="max-w-5xl mx-auto w-full">
-          <SectionHeading index="01" title="About Me" />
-          <div className="border border-white/15 p-8 md:p-12 hover:border-white/40 transition-colors duration-300">
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
-              I'm a Technical IT Specialist with a strong passion for ICT and a solid background in cybersecurity operations.
-              My expertise includes SOC L1 analysis, incident triage, and SIEM rule management, ensuring resilient and secure infrastructures.
-            </p>
-
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
-              During my experience at <span className="text-white font-semibold">Be-innova S.r.l.</span> (January – June 2025),
-              I worked as SOC Analyst L1 across multiple domains including Network and Security System Engineering, Linux system administration,
-              and advanced security monitoring with SIEM systems (Elastic, SGBOX), Bitdefender and Microsoft Defender.
-            </p>
-
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
-              Since <span className="text-white font-semibold">July 2025</span>, I have been working at
-              <span className="text-white font-semibold"> Xenos S.r.l.</span> as a System Administrator and Network Engineer.
-              My responsibilities include managing Microsoft 365 environments, Windows Server with Active Directory,
-              WatchGuard firewalls, Ubiquiti UniFi access points, NAKIVO backup with NAS Synology, and full IT commissioning for business clients.
-            </p>
-
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
-              My technical skill set spans Check Point and SecGX firewall administration, IPS/IDS operations with Trellix and Cisco,
-              vulnerability management with Qualys and Nessus, and extensive network monitoring using Netscout and Paessler solutions.
-            </p>
-
-            <p className="text-lg md:text-xl text-white/70 leading-relaxed">
-              Outside of work, I enjoy playing guitar and singing, sports like volleyball and gym training, mountain excursions, and travel.
-              I strongly believe that continuous learning is essential for staying ahead in the fast-evolving IT industry.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
-              <div className="text-center p-6 border border-white/15">
-                <Shield size={28} className="mx-auto mb-3 text-white" />
-                <div className="text-lg font-semibold uppercase tracking-wide mb-1">Security</div>
-                <div className="text-white/50 text-sm uppercase tracking-wide">SOC & Firewall</div>
-              </div>
-              <div className="text-center p-6 border border-white/15">
-                <Server size={28} className="mx-auto mb-3 text-white" />
-                <div className="text-lg font-semibold uppercase tracking-wide mb-1">SysAdmin</div>
-                <div className="text-white/50 text-sm uppercase tracking-wide">Linux & Windows</div>
-              </div>
-              <div className="text-center p-6 border border-white/15">
-                <Network size={28} className="mx-auto mb-3 text-white" />
-                <div className="text-lg font-semibold uppercase tracking-wide mb-1">Network</div>
-                <div className="text-white/50 text-sm uppercase tracking-wide">Analysis & Configuring</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Experience Section */}
       <section id="experience" className="min-h-screen py-24 px-6 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
-          <SectionHeading index="02" title="Work Experience" />
+          <SectionHeading index="01" title="Work Experience" />
           <div className="space-y-6">
             {experiences.map((exp, i) => (
               <div key={i} className="border border-white/15 p-8 hover:border-white/40 transition-colors duration-300">
@@ -369,6 +334,27 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* Qualifications Section */}
+      <section id="qualifications" className="min-h-screen py-24 px-6 border-t border-white/10">
+        <div className="max-w-4xl mx-auto">
+          <SectionHeading index="02" title="Education & Qualifications" />
+          <div className="relative">
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-white/20"></div>
+            {qualifications.map((qual, i) => (
+              <div key={i} className="relative pl-20 pb-12 group">
+                <div className="absolute left-[26px] top-1.5 w-3 h-3 bg-white rounded-full border-4 border-black"></div>
+                <div className="border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
+                  <div className="text-white font-semibold uppercase tracking-[0.15em] text-sm mb-2">{qual.year}</div>
+                  <h3 className="text-lg md:text-xl font-semibold uppercase tracking-tight mb-2">{qual.title}</h3>
+                  <p className="text-white/55 mb-3 text-sm uppercase tracking-wide">{qual.institution}</p>
+                  <p className="text-white/65 text-sm leading-relaxed">{qual.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Skills Section */}
       <section id="skills" className="min-h-screen py-24 px-6 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
@@ -379,21 +365,12 @@ export default function Portfolio() {
             <div className="grid gap-4">
               {hardSkills.map((skill, i) => (
                 <div key={i} className="border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center gap-4">
                     <div className="text-white flex-shrink-0">{skill.icon}</div>
                     <div className="flex-1">
-                      <div className="flex justify-between items-center gap-3 mb-1">
-                        <span className="text-base md:text-lg font-semibold uppercase tracking-wide">{skill.name}</span>
-                        <span className="text-white/50 text-sm flex-shrink-0">{skill.level}%</span>
-                      </div>
+                      <div className="text-base md:text-lg font-semibold uppercase tracking-wide mb-1">{skill.name}</div>
                       <span className="text-xs text-white/45 uppercase tracking-wide">{skill.category}</span>
                     </div>
-                  </div>
-                  <div className="h-1 bg-white/15 overflow-hidden">
-                    <div
-                      className="h-full bg-white transition-all duration-1000"
-                      style={{ width: `${skill.level}%` }}
-                    />
                   </div>
                 </div>
               ))}
@@ -419,23 +396,55 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Qualifications Section */}
-      <section id="qualifications" className="min-h-screen py-24 px-6 border-t border-white/10">
-        <div className="max-w-4xl mx-auto">
-          <SectionHeading index="04" title="Education & Qualifications" />
-          <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-white/20"></div>
-            {qualifications.map((qual, i) => (
-              <div key={i} className="relative pl-20 pb-12 group">
-                <div className="absolute left-[26px] top-1.5 w-3 h-3 bg-white rounded-full border-4 border-black"></div>
-                <div className="border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
-                  <div className="text-white font-semibold uppercase tracking-[0.15em] text-sm mb-2">{qual.year}</div>
-                  <h3 className="text-lg md:text-xl font-semibold uppercase tracking-tight mb-2">{qual.title}</h3>
-                  <p className="text-white/55 mb-3 text-sm uppercase tracking-wide">{qual.institution}</p>
-                  <p className="text-white/65 text-sm leading-relaxed">{qual.desc}</p>
-                </div>
+      {/* About Section */}
+      <section id="about" className="min-h-screen flex items-center py-24 px-6 border-t border-white/10">
+        <div className="max-w-5xl mx-auto w-full">
+          <SectionHeading index="04" title="About Me" />
+          <div className="border border-white/15 p-8 md:p-12 hover:border-white/40 transition-colors duration-300">
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              I'm a Technical IT Specialist with a strong passion for ICT and a solid background in cybersecurity operations.
+              My expertise includes SOC L1 analysis, incident triage, and SIEM rule management, ensuring resilient and secure infrastructures.
+            </p>
+
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              Since <span className="text-white font-semibold">July 2025</span>, I have been working at
+              <span className="text-white font-semibold"> Xenos S.r.l.</span> as a System Administrator and Network Engineer.
+              My responsibilities include managing Microsoft 365 environments, Windows Server with Active Directory,
+              WatchGuard firewalls, Ubiquiti UniFi access points, NAKIVO backup with NAS Synology, and full IT commissioning for business clients.
+            </p>
+
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              Previously, at <span className="text-white font-semibold">Be-innova S.r.l.</span> (January – June 2025),
+              I worked as SOC Analyst L1 across multiple domains including Network and Security System Engineering, Linux system administration,
+              and advanced security monitoring with SIEM systems (Elastic, SGBOX), Bitdefender and Microsoft Defender.
+            </p>
+
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              My technical skill set spans Check Point and SecGX firewall administration, IPS/IDS operations with Trellix and Cisco,
+              vulnerability management with Qualys and Nessus, and extensive network monitoring using Netscout and Paessler solutions.
+            </p>
+
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed">
+              Outside of work, I enjoy playing guitar and singing, sports like volleyball and gym training, mountain excursions, and travel.
+              I strongly believe that continuous learning is essential for staying ahead in the fast-evolving IT industry.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+              <div className="text-center p-6 border border-white/15">
+                <Shield size={28} className="mx-auto mb-3 text-white" />
+                <div className="text-lg font-semibold uppercase tracking-wide mb-1">Security</div>
+                <div className="text-white/50 text-sm uppercase tracking-wide">SOC & Firewall</div>
               </div>
-            ))}
+              <div className="text-center p-6 border border-white/15">
+                <Server size={28} className="mx-auto mb-3 text-white" />
+                <div className="text-lg font-semibold uppercase tracking-wide mb-1">SysAdmin</div>
+                <div className="text-white/50 text-sm uppercase tracking-wide">Linux & Windows</div>
+              </div>
+              <div className="text-center p-6 border border-white/15">
+                <Network size={28} className="mx-auto mb-3 text-white" />
+                <div className="text-lg font-semibold uppercase tracking-wide mb-1">Network</div>
+                <div className="text-white/50 text-sm uppercase tracking-wide">Analysis & Configuring</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
