@@ -19,7 +19,7 @@ export default function Portfolio() {
     const handleScroll = () => {
       setScrollY(window.scrollY);
 
-      const sections = ['home', 'experience', 'qualifications', 'skills', 'about'];
+      const sections = ['home', 'experience', 'qualifications', 'skills', 'about', 'projects'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -83,7 +83,7 @@ export default function Portfolio() {
       desc: 'Certificazione avanzata sulla sicurezza delle reti: hardening del perimetro, gestione policy firewall, VPN e traffic management, best practice di network security su piattaforma WatchGuard.'
     },
     {
-      year: 'Conseguita',
+      year: '2023',
       title: 'CCNA – Cisco Certified Network Associate',
       institution: 'Cisco',
       desc: 'Certificazione sulle fondamenta del networking: routing e switching, IP addressing, sicurezza di base delle reti e troubleshooting su infrastrutture Cisco.'
@@ -217,6 +217,19 @@ export default function Portfolio() {
     }
   ];
 
+  const projects = [
+    {
+      title: 'Backup Monitor',
+      tag: 'Monitoraggio',
+      desc: 'Monitoraggio dei backup tramite log.'
+    },
+    {
+      title: 'Maintenance Log',
+      tag: 'Manutenzione',
+      desc: 'Gestione della manutenzione tramite log.'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Navigation Bar */}
@@ -226,7 +239,7 @@ export default function Portfolio() {
             SC
           </div>
           <div className="hidden md:flex gap-10">
-            {['home', 'experience', 'qualifications', 'skills', 'about'].map(section => (
+            {['home', 'experience', 'qualifications', 'skills', 'about', 'projects'].map(section => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -445,6 +458,22 @@ export default function Portfolio() {
                 <div className="text-white/50 text-sm uppercase tracking-wide">Analysis & Configuring</div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="min-h-screen py-24 px-6 border-t border-white/10">
+        <div className="max-w-5xl mx-auto">
+          <SectionHeading index="05" title="Progetti" />
+          <div className="grid md:grid-cols-2 gap-4">
+            {projects.map((project, i) => (
+              <div key={i} className="border border-white/15 p-8 hover:border-white/40 transition-colors duration-300">
+                <span className="inline-block px-3 py-1 border border-white/20 text-[11px] uppercase tracking-wide text-white/70 mb-4">{project.tag}</span>
+                <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-tight mb-3">{project.title}</h3>
+                <p className="text-sm text-white/70 leading-relaxed">{project.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
