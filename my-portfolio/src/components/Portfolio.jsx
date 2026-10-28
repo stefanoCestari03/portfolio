@@ -414,8 +414,8 @@ export default function Portfolio() {
                 <div>
                   <h4 className="text-lg font-semibold uppercase tracking-tight mb-2">Travel & English</h4>
                   <p className="text-sm text-white/70 leading-relaxed">
-                    Mi piace viaggiare, ed è viaggiando che ho studiato e imparato l'inglese: una lingua che uso
-                    continuamente, nel lavoro e nella vita di tutti i giorni.
+                    I love to travel, and it's through traveling that I studied and learned English: a language I
+                    use continuously, both at work and in everyday life.
                   </p>
                 </div>
               </div>
