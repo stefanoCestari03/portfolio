@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Code, Brain, Award, Briefcase, Mail, Linkedin, Github, ChevronDown, Sparkles, Zap, Shield, Server, Network, Database, Eye, AlertTriangle, Activity, ArrowUpRight, Box, Smartphone } from 'lucide-react';
 import profileImg from "../assets/profile.jpg";
+import travelImg from "../assets/travel.jpg";
 
 function SectionHeading({ index, title }) {
   return (
@@ -404,6 +405,20 @@ export default function Portfolio() {
                   <h4 className="text-lg font-semibold uppercase tracking-tight">{skill.name}</h4>
                 </div>
               ))}
+              <div className="md:col-span-2 border border-white/15 p-6 md:p-8 hover:border-white/40 transition-colors duration-300 flex flex-col sm:flex-row items-center gap-6">
+                <img
+                  src={travelImg}
+                  alt="Viaggio"
+                  className="w-full sm:w-48 h-48 object-cover flex-shrink-0"
+                />
+                <div>
+                  <h4 className="text-lg font-semibold uppercase tracking-tight mb-2">Travel & English</h4>
+                  <p className="text-sm text-white/70 leading-relaxed">
+                    Mi piace viaggiare, ed è viaggiando che ho studiato e imparato l'inglese: una lingua che uso
+                    continuamente, nel lavoro e nella vita di tutti i giorni.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
