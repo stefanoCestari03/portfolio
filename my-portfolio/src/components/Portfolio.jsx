@@ -409,7 +409,7 @@ export default function Portfolio() {
                 <img
                   src={travelImg}
                   alt="Viaggio"
-                  className="w-full sm:w-48 h-48 object-cover flex-shrink-0"
+                  className="w-full sm:w-48 h-48 object-cover object-top flex-shrink-0"
                 />
                 <div>
                   <h4 className="text-lg font-semibold uppercase tracking-tight mb-2">Travel & English</h4>
