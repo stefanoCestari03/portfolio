@@ -1,8 +1,12 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { Code, Brain, Award, Briefcase, Mail, Linkedin, Github, ChevronDown, Sparkles, Zap, Shield, Server, Network, Database, Eye, AlertTriangle, Activity, ArrowUpRight, Box, Smartphone } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import profileImg from "../assets/profile.jpg";
 import travelImg from "../assets/travel.jpg";
 const Background3D = lazy(() => import('./Background3D'));
+
+gsap.registerPlugin(ScrollTrigger);
 
 function SectionHeading({ index, title }) {
   return (
@@ -13,9 +17,63 @@ function SectionHeading({ index, title }) {
   );
 }
 
+function FloatingSymbol({ icon: Icon, className = '', size = 160 }) {
+  return (
+    <Icon
+      size={size}
+      strokeWidth={0.6}
+      aria-hidden="true"
+      className={`symbol-float hidden sm:block pointer-events-none absolute text-white/[0.06] ${className}`}
+    />
+  );
+}
+
 export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('.reveal-item').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 32 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
+          }
+        );
+      });
+
+      gsap.utils.toArray('.symbol-float').forEach((el, i) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, scale: 0.7, rotate: i % 2 === 0 ? -12 : 12 },
+          {
+            opacity: 1,
+            scale: 1,
+            rotate: 0,
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 95%', toggleActions: 'play none none reverse' }
+          }
+        );
+        gsap.to(el, {
+          y: i % 2 === 0 ? -40 : 40,
+          ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 1 }
+        });
+      });
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -233,7 +291,7 @@ export default function Portfolio() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div ref={rootRef} className="min-h-screen bg-black text-white overflow-x-hidden">
       <Suspense fallback={null}>
         <Background3D />
       </Suspense>
@@ -317,10 +375,12 @@ export default function Portfolio() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="min-h-screen py-24 px-6 border-t border-white/10">
+      <section id="experience" className="relative overflow-hidden min-h-screen py-24 px-6 border-t border-white/10">
+        <FloatingSymbol icon={Server} className="-top-12 -right-12" />
+        <FloatingSymbol icon={Network} className="-bottom-16 -left-16" />
         <div className="max-w-6xl mx-auto">
           <SectionHeading index="01" title="Work Experience" />
-          <div className="mb-10 border border-white/25 p-6 flex items-start gap-4">
+          <div className="reveal-item mb-10 border border-white/25 p-6 flex items-start gap-4">
             <span className="mt-1.5 w-2 h-2 rounded-full bg-white flex-shrink-0 animate-pulse" />
             <p className="text-sm md:text-base text-white/80 leading-relaxed">
               <span className="font-semibold uppercase tracking-wide">In arrivo —</span> sto per intraprendere un
@@ -331,7 +391,7 @@ export default function Portfolio() {
           </div>
           <div className="space-y-6">
             {experiences.map((exp, i) => (
-              <div key={i} className="border border-white/15 p-8 hover:border-white/40 transition-colors duration-300">
+              <div key={i} className="reveal-item border border-white/15 p-8 hover:border-white/40 transition-colors duration-300">
                 <div className="flex flex-col md:flex-row items-start gap-6 mb-6">
                   <div className="p-4 border border-white/20 flex-shrink-0 text-white">
                     {exp.icon}
@@ -363,7 +423,9 @@ export default function Portfolio() {
       </section>
 
       {/* Qualifications Section */}
-      <section id="qualifications" className="min-h-screen py-24 px-6 border-t border-white/10">
+      <section id="qualifications" className="relative overflow-hidden min-h-screen py-24 px-6 border-t border-white/10">
+        <FloatingSymbol icon={Award} className="-top-12 -right-12" />
+        <FloatingSymbol icon={Shield} className="-bottom-16 -left-16" />
         <div className="max-w-4xl mx-auto">
           <SectionHeading index="02" title="Education & Qualifications" />
           <div className="relative">
@@ -371,7 +433,7 @@ export default function Portfolio() {
             {qualifications.map((qual, i) => (
               <div key={i} className="relative pl-20 pb-12 group">
                 <div className="absolute left-[26px] top-1.5 w-3 h-3 bg-white rounded-full border-4 border-black"></div>
-                <div className="border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
+                <div className="reveal-item border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
                   <div className="text-white font-semibold uppercase tracking-[0.15em] text-sm mb-2">{qual.year}</div>
                   <h3 className="text-lg md:text-xl font-semibold uppercase tracking-tight mb-2">{qual.title}</h3>
                   <p className="text-white/55 mb-3 text-sm uppercase tracking-wide">{qual.institution}</p>
@@ -384,7 +446,9 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="min-h-screen py-24 px-6 border-t border-white/10">
+      <section id="skills" className="relative overflow-hidden min-h-screen py-24 px-6 border-t border-white/10">
+        <FloatingSymbol icon={Code} className="-top-12 -right-12" />
+        <FloatingSymbol icon={Box} className="-bottom-16 -left-16" />
         <div className="max-w-6xl mx-auto">
           <SectionHeading index="03" title="Skills & Expertise" />
 
@@ -392,7 +456,7 @@ export default function Portfolio() {
             <h3 className="text-xs uppercase tracking-[0.3em] text-white/40 mb-8">Technical Skills</h3>
             <div className="grid gap-4">
               {hardSkills.map((skill, i) => (
-                <div key={i} className="border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
+                <div key={i} className="reveal-item border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
                   <div className="flex items-center gap-4">
                     <div className="text-white flex-shrink-0">{skill.icon}</div>
                     <div className="flex-1">
@@ -411,7 +475,7 @@ export default function Portfolio() {
               {softSkills.map((skill, i) => (
                 <div
                   key={i}
-                  className="border border-white/15 p-8 hover:border-white/40 transition-colors duration-300"
+                  className="reveal-item border border-white/15 p-8 hover:border-white/40 transition-colors duration-300"
                 >
                   <div className="text-white mb-4">
                     {skill.icon}
@@ -419,7 +483,7 @@ export default function Portfolio() {
                   <h4 className="text-lg font-semibold uppercase tracking-tight">{skill.name}</h4>
                 </div>
               ))}
-              <div className="md:col-span-2 border border-white/15 p-6 md:p-8 hover:border-white/40 transition-colors duration-300 flex flex-col sm:flex-row items-center gap-6">
+              <div className="reveal-item md:col-span-2 border border-white/15 p-6 md:p-8 hover:border-white/40 transition-colors duration-300 flex flex-col sm:flex-row items-center gap-6">
                 <img
                   src={travelImg}
                   alt="Viaggio"
@@ -439,10 +503,12 @@ export default function Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="min-h-screen flex items-center py-24 px-6 border-t border-white/10">
+      <section id="about" className="relative overflow-hidden min-h-screen flex items-center py-24 px-6 border-t border-white/10">
+        <FloatingSymbol icon={Activity} className="-top-12 -right-12" />
+        <FloatingSymbol icon={Eye} className="-bottom-16 -left-16" />
         <div className="max-w-5xl mx-auto w-full">
           <SectionHeading index="04" title="About Me" />
-          <div className="border border-white/15 p-8 md:p-12 hover:border-white/40 transition-colors duration-300">
+          <div className="reveal-item border border-white/15 p-8 md:p-12 hover:border-white/40 transition-colors duration-300">
             <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
               I'm a Technical IT Specialist with a strong passion for ICT and a solid background in cybersecurity operations.
               My expertise includes SOC L1 analysis, incident triage, and SIEM rule management, ensuring resilient and secure infrastructures.
@@ -492,12 +558,14 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="min-h-screen py-24 px-6 border-t border-white/10">
+      <section id="projects" className="relative overflow-hidden min-h-screen py-24 px-6 border-t border-white/10">
+        <FloatingSymbol icon={Zap} className="-top-12 -right-12" />
+        <FloatingSymbol icon={Database} className="-bottom-16 -left-16" />
         <div className="max-w-5xl mx-auto">
           <SectionHeading index="05" title="Progetti" />
           <div className="grid md:grid-cols-2 gap-4">
             {projects.map((project, i) => (
-              <div key={i} className="border border-white/15 p-8 hover:border-white/40 transition-colors duration-300">
+              <div key={i} className="reveal-item border border-white/15 p-8 hover:border-white/40 transition-colors duration-300">
                 <span className="inline-block px-3 py-1 border border-white/20 text-[11px] uppercase tracking-wide text-white/70 mb-4">{project.tag}</span>
                 <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-tight mb-3">{project.title}</h3>
                 <p className="text-sm text-white/70 leading-relaxed">{project.desc}</p>
