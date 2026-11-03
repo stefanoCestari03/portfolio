@@ -40,7 +40,7 @@ export default function StagePanel({ id, stageProgressRef, children, align = 'le
   return (
     <section id={id} ref={wrapperRef} className="relative h-[180vh]">
       <div
-        className={`sticky top-0 h-screen flex items-center px-6 md:px-16 ${
+        className={`sticky top-0 h-[100svh] flex items-center px-6 md:px-16 ${
           align === 'right' ? 'justify-end text-right' : 'justify-start text-left'
         }`}
       >

@@ -13,6 +13,7 @@ import ReducedMotionView from './ReducedMotionView';
 const SignalJourneyScene = lazy(() => import('../three/SignalJourneyScene'));
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 export default function Portfolio() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -101,7 +102,7 @@ export default function Portfolio() {
 
       <div className="relative z-10">
         {/* Hero */}
-        <section id="hero" className="relative h-screen flex items-center px-6 md:px-16">
+        <section id="hero" className="relative h-[100svh] flex items-center px-6 md:px-16">
           <div className="max-w-2xl animate-fade-in">
             <div className="w-16 h-16 rounded-full overflow-hidden border border-white/25 mb-6">
               <img src={profileImg} alt={hero.name} className="w-full h-full object-cover" />
@@ -113,10 +114,12 @@ export default function Portfolio() {
           </div>
           <button
             onClick={() => scrollToSection('training')}
-            className="absolute bottom-10 left-1/2 -translate-x-1/2"
+            className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce"
+            style={{ bottom: 'max(1.5rem, env(safe-area-inset-bottom, 1.5rem))' }}
             aria-label="Scorri"
           >
-            <ChevronDown size={24} className="text-white/40" />
+            <span className="text-[10px] uppercase tracking-[0.3em] text-white/50">Scroll</span>
+            <ChevronDown size={22} className="text-white/50" />
           </button>
         </section>
 
@@ -190,7 +193,7 @@ export default function Portfolio() {
         </StagePanel>
 
         {/* Contact — final resting state, not scrubbed */}
-        <section id="contact" className="h-screen flex flex-col items-center justify-center px-6 text-center">
+        <section id="contact" className="h-[100svh] flex flex-col items-center justify-center px-6 text-center">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-6">{contact.index}</div>
           <h2 className="text-3xl md:text-5xl font-semibold uppercase tracking-tight mb-8">Contatti</h2>
           <div className="flex gap-8 mb-10">
