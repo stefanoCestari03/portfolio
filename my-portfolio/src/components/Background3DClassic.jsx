@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-export default function Background3D() {
+export default function Background3DClassic() {
   const mountRef = useRef(null);
 
   useEffect(() => {

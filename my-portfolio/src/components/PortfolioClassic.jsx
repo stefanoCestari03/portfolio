@@ -1,0 +1,647 @@
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import { Code, Brain, Award, Briefcase, Mail, Linkedin, Github, ChevronDown, Sparkles, Zap, Shield, Server, Network, Database, Eye, AlertTriangle, Activity, ArrowUpRight, Box, Smartphone } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
+import profileImg from "../assets/profile.jpg";
+import travelImg from "../assets/travel.jpg";
+const Background3D = lazy(() => import('./Background3DClassic'));
+
+gsap.registerPlugin(ScrollTrigger);
+
+function SectionHeading({ index, title }) {
+  return (
+    <div className="mb-14 text-center">
+      <div className="text-[11px] uppercase tracking-[0.3em] text-white/40 mb-4">{index}</div>
+      <h2 className="text-3xl md:text-5xl font-semibold uppercase tracking-tight">{title}</h2>
+    </div>
+  );
+}
+
+function FloatingSymbol({ icon: Icon, className = '', size = 160 }) {
+  return (
+    <Icon
+      size={size}
+      strokeWidth={0.6}
+      aria-hidden="true"
+      className={`symbol-float hidden sm:block pointer-events-none absolute text-white/[0.06] ${className}`}
+    />
+  );
+}
+
+export default function PortfolioClassic() {
+  const [scrollY, setScrollY] = useState(0);
+  const [activeSection, setActiveSection] = useState('home');
+  const rootRef = useRef(null);
+  const lenisRef = useRef(null);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('.reveal-item').forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 32 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
+          }
+        );
+      });
+
+      gsap.utils.toArray('.symbol-float').forEach((el, i) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, scale: 0.7, rotate: i % 2 === 0 ? -12 : 12 },
+          {
+            opacity: 1,
+            scale: 1,
+            rotate: 0,
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 95%', toggleActions: 'play none none reverse' }
+          }
+        );
+        gsap.to(el, {
+          y: i % 2 === 0 ? -40 : 40,
+          ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 1 }
+        });
+      });
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    lenisRef.current = lenis;
+    lenis.on('scroll', ScrollTrigger.update);
+
+    const onTick = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(onTick);
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      gsap.ticker.remove(onTick);
+      lenis.destroy();
+      lenisRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+
+      const sections = ['home', 'experience', 'qualifications', 'skills', 'about', 'projects'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(el, { duration: 1.2 });
+    } else {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleDownloadCV = () => {
+    const cvUrl = '/stefanocestaricv_2026_Autorizzazione.pdf';
+    const link = document.createElement('a');
+    link.href = cvUrl;
+    link.download = 'CV_Stefano_Cestari_2026.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const hardSkills = [
+    { name: 'Windows Server & Endpoint', icon: <Server />, category: 'System Admin' },
+    { name: 'Linux Administration', icon: <Server />, category: 'System Admin' },
+    { name: 'VMware & Nakivo', icon: <Database />, category: 'Virtualization' },
+    { name: 'WatchGuard Firewall', icon: <Shield />, category: 'Security' },
+    { name: 'WithSecure EDR', icon: <Eye />, category: 'Security' },
+    { name: 'SOC Analysis & SIEM', icon: <Activity />, category: 'Cybersecurity' },
+    { name: 'Incident Response', icon: <AlertTriangle />, category: 'Cybersecurity' },
+    { name: 'Cisco Networking', icon: <Network />, category: 'Networking' },
+    { name: 'Python Scripting', icon: <Code />, category: 'Development' },
+    { name: 'SQL & MySQL', icon: <Database />, category: 'Database' },
+    { name: 'Database Design & Administration', icon: <Database />, category: 'Database' },
+    { name: 'Angular & React', icon: <Code />, category: 'Frontend' },
+    { name: 'Java & Spring Boot', icon: <Code />, category: 'Backend' },
+    { name: 'Docker & Microservizi', icon: <Box />, category: 'DevOps' },
+    { name: 'Node.js', icon: <Code />, category: 'Backend' },
+    { name: 'Flutter', icon: <Smartphone />, category: 'Mobile' }
+  ];
+
+  const softSkills = [
+    { name: 'Problem Solving', icon: <Brain /> },
+    { name: 'Team Collaboration', icon: <Briefcase /> },
+    { name: 'Critical Thinking', icon: <Sparkles /> },
+    { name: 'Communication', icon: <Award /> }
+  ];
+
+  const qualifications = [
+    {
+      year: '2026 - In corso',
+      title: 'Network Security Essentials – Certificazione Avanzata',
+      institution: 'WatchGuard Technologies',
+      desc: 'Certificazione avanzata sulla sicurezza delle reti: hardening del perimetro, gestione policy firewall, VPN e traffic management, best practice di network security su piattaforma WatchGuard.'
+    },
+    {
+      year: '2023',
+      title: 'CCNA – Cisco Certified Network Associate',
+      institution: 'Cisco',
+      desc: 'Certificazione sulle fondamenta del networking: routing e switching, IP addressing, sicurezza di base delle reti e troubleshooting su infrastrutture Cisco.'
+    },
+    {
+      year: '2022 - 2025',
+      title: 'MAT – Tecnico Superiore delle Infrastrutture di Reti e Cloud Computing',
+      institution: 'Marconi Altaformazione Tecnologica, Rovereto (TN)',
+      desc: 'Corso post-diploma biennale intensivo con professori universitari ed esperti del settore. Competenze acquisite: protocolli di rete, Java, MySQL (progettazione avanzata DB), HTML/CSS/JavaScript, Angular, React, Spring Boot, Python (crittografia), cloud computing AWS, virtualizzazione VMware. Progetti reali con FBK (Spring Boot) e GPI (Angular). Corsi di sicurezza informatica (Cyber Kill Chain) con Dedagroup e Trentino Digitale.'
+    },
+    {
+      year: '2017 - 2022',
+      title: 'Perito Informatico',
+      institution: 'Istituto Marie Curie, Pergine Valsugana (TN)',
+      desc: 'Specializzazione informatica con studio di protocolli di rete e configurazioni Cisco, programmazione Java e C, sviluppo web (PHP, JS, CSS, HTML), gestione database SQL, robotica e project management. Progetto pratico: scheda Arduino per domotica con interfaccia web.'
+    }
+  ];
+
+  const experiences = [
+    {
+      company: 'Xenos S.r.l.',
+      location: 'Via Laurence Feininger 32, Gardolo (TN)',
+      role: 'System Administrator & Network Engineer',
+      period: 'Luglio 2025 - Presente',
+      type: 'Esperienza lavorativa',
+      responsibilities: [
+        'Gestione completa ambienti Microsoft 365 (Exchange, Teams, SharePoint)',
+        'Configurazione e supporto caselle PEC ed email personalizzate clienti',
+        'Amministrazione Windows Server con Active Directory, GPO e policy di sicurezza',
+        'Configurazione e monitoraggio backup cloud con NAKIVO e NAS Synology / Hetzner',
+        'Verifica periodica backup e gestione procedure di restore',
+        'Preparazione, configurazione e assistenza diretta su endpoint Windows',
+        'Supporto remoto TeamViewer, aggiornamenti sicurezza e patching dispositivi',
+        'Configurazione e manutenzione Firewall WatchGuard (policy, VPN, traffic management)',
+        'Gestione Access Point Ubiquiti UniFi (deploy, SSID, VLAN, firmware)',
+        'Commissioning autonomo su nuovi clienti: setup completo infrastruttura IT',
+        'Manutenzione programmata e straordinaria con monitoraggio proattivo'
+      ],
+      icon: <Server />
+    },
+    {
+      company: 'Be-innova S.r.l.',
+      location: 'Via dei Solteri 74, Trento',
+      role: 'SOC Analyst L1 / Network & Security System Engineer',
+      period: 'Gennaio 2025 - Giugno 2025',
+      type: 'Esperienza lavorativa',
+      responsibilities: [
+        'Monitoraggio H24 su turni come SOC Analyst di primo livello (L1)',
+        'Analisi e triage degli alert da sistemi SIEM (Elastic, SGBOX)',
+        'Inserimento eccezioni a regole di sicurezza e rule tuning',
+        'Analisi alert Bitdefender e Microsoft Defender',
+        'Monitoraggio rete, apparati informatici e server clienti'
+      ],
+      icon: <Shield />
+    },
+    {
+      company: 'Be-innova S.r.l.',
+      location: 'Via dei Solteri 74, Trento',
+      role: 'Sistemista Linux / Web Server Administrator',
+      period: 'Ottobre 2024 - Dicembre 2024',
+      type: 'Esperienza lavorativa',
+      responsibilities: [
+        'Gestione aggiornamento server web Linux aziendale dopo vulnerabilità critica nel ticketing',
+        'Analisi della falla e studio del Proof of Concept (POC) e metodologie di exploit',
+        'Tesi di fine corso sulla vulnerabilità CVE identificata e relativo patching',
+        'Montaggio e cablaggio del rack di laboratorio'
+      ],
+      icon: <Server />
+    },
+    {
+      company: 'Be-innova S.r.l.',
+      location: 'Via dei Solteri 74, Trento',
+      role: 'Tirocinante – Firewall & Network Design',
+      period: 'Giugno 2024 - Luglio 2024',
+      type: 'Stage',
+      responsibilities: [
+        'Autoformazione sulle best practice di configurazione Firewall Fortinet',
+        'Creazione schemi di rete dettagliati per uso interno e consegna clienti',
+        'Reverse engineering infrastrutture di rete clienti per analisi di sicurezza',
+        'Progettazione rack di laboratorio con dispositivi Cisco e Fortinet'
+      ],
+      icon: <Network />
+    },
+    {
+      company: 'Be-innova S.r.l.',
+      location: 'Via Ezio Maccani 195, Trento',
+      role: 'Tirocinante Sistemistico – Linux OS',
+      period: 'Ottobre 2023 - Dicembre 2023',
+      type: 'Stage',
+      responsibilities: [
+        'Gestione server Linux virtualizzati per servizi web (Proxmox, Docker)',
+        'Progetto di aggiornamento sistema operativo e software applicativi',
+        'Formazione con affiancamento nell\'amministrazione di server Linux',
+        'Monitoraggio e manutenzione infrastrutture corporate'
+      ],
+      icon: <Activity />
+    },
+    {
+      company: 'Be-innova S.r.l.',
+      location: 'Via Ezio Maccani 195, Trento',
+      role: 'Tirocinante – Networking',
+      period: 'Maggio 2023',
+      type: 'Stage',
+      responsibilities: [
+        'Configurazione di reti e creazione schemi basati su infrastrutture esistenti',
+        'Ricerca e implementazione in laboratorio di migliorie per i sistemi'
+      ],
+      icon: <Network />
+    },
+    {
+      company: 'Progetto Personale',
+      location: 'Remote',
+      role: 'Vibe Coding & Full-Stack Web App Development',
+      period: '2024 - Presente',
+      type: 'Progetto Personale',
+      responsibilities: [
+        'AI-assisted vibe coding: rapid prototyping di web app con strumenti LLM',
+        'Sviluppo full-stack: frontend con Vite/React, backend con Node.js e Spring Boot',
+        'Containerizzazione di microservizi con Docker per ambienti di sviluppo e produzione',
+        'Primi progetti mobile con Flutter',
+        'Sviluppo di piccoli tool interni per automatizzare e migliorare processi aziendali (approccio DevOps)',
+        'Registrazione domini, configurazione DNS e gestione hosting (shared, VPS, cloud)',
+        'Deployment pipeline: build, test e release per ambienti di produzione',
+        'Progettazione e gestione database MySQL e PostgreSQL di medie dimensioni',
+        'Database administration: user management, backup, migrazioni schema',
+        'Progettazione REST API e integrazione tra frontend e backend',
+        'Gestione certificati SSL/TLS e configurazione web server (Apache, Nginx)',
+        'Monitoraggio performance e uptime per applicazioni web in produzione'
+      ],
+      icon: <Code />
+    }
+  ];
+
+  const projects = [
+    {
+      title: 'Backup Monitor',
+      tag: 'Monitoraggio',
+      desc: 'Monitoraggio dei backup tramite log.'
+    },
+    {
+      title: 'Maintenance Log',
+      tag: 'Manutenzione',
+      desc: 'Gestione della manutenzione tramite log.'
+    }
+  ];
+
+  return (
+    <div ref={rootRef} className="min-h-screen bg-black text-white overflow-x-hidden">
+      <Suspense fallback={null}>
+        <Background3D />
+      </Suspense>
+      <div className="relative z-10">
+      {/* Navigation Bar */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-black border-b border-white/15' : ''}`}>
+        <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+          <div className="text-lg font-semibold tracking-[0.3em]">
+            SC
+          </div>
+          <div className="hidden md:flex gap-10">
+            {['home', 'experience', 'qualifications', 'skills', 'about', 'projects'].map(section => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className={`uppercase text-xs tracking-[0.18em] transition-colors duration-200 hover:text-white ${activeSection === section ? 'text-white' : 'text-white/45'}`}
+              >
+                {section}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={handleDownloadCV}
+            className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-white/70 hover:text-white transition-colors"
+          >
+            <ArrowUpRight size={14} />
+            <span className="hidden md:inline">Download CV</span>
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="relative z-10 text-center px-6 my-20">
+          <div className="mb-8 inline-block">
+            {/* Profile photo — kept as-is */}
+            <div className="w-32 h-32 rounded-full border border-white/25 p-1">
+              <div className="w-full h-full rounded-full bg-black flex items-center justify-center text-5xl font-bold overflow-hidden">
+               <img
+                  src={profileImg}
+                  alt="Profile"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+            </div>
+          </div>
+          <h1 className="text-5xl md:text-8xl font-semibold uppercase tracking-tight mb-6 animate-fade-in">
+            Stefano Cestari
+          </h1>
+          <p className="text-sm md:text-lg uppercase tracking-[0.2em] text-white/55 mb-3 animate-fade-in-delay">
+            Network &amp; Security System Engineer
+          </p>
+          <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-white/35 mb-10 animate-fade-in-delay">
+            ICT Specialist | SOC Analyst | System Administrator
+          </p>
+          <div className="flex gap-6 justify-center mb-10 animate-fade-in-delay-2">
+            <a href="https://www.linkedin.com/in/stefano-cestari-a7a730264/" target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-60 transition-opacity">
+              <Linkedin size={22} />
+            </a>
+            <a href="mailto:stefano.cestari2203@gmail.com" className="text-white hover:opacity-60 transition-opacity">
+              <Mail size={22} />
+            </a>
+            <a href="https://github.com/stefanoCestari03" target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-60 transition-opacity">
+              <Github size={22} />
+            </a>
+          </div>
+          <button
+            onClick={handleDownloadCV}
+            className="inline-flex items-center gap-3 px-7 py-3 border border-white/25 uppercase text-xs tracking-[0.2em] hover:bg-white hover:text-black transition-colors mb-16 animate-fade-in-delay-2"
+          >
+            <ArrowUpRight size={16} />
+            Download Full CV
+          </button>
+          <button
+            onClick={() => scrollToSection('about')}
+            className="block mx-auto"
+          >
+            <ChevronDown size={28} className="text-white/40" />
+          </button>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="relative overflow-hidden min-h-screen py-24 px-6 border-t border-white/10">
+        <FloatingSymbol icon={Server} className="-top-12 -right-12" />
+        <FloatingSymbol icon={Network} className="-bottom-16 -left-16" />
+        <div className="max-w-6xl mx-auto">
+          <SectionHeading index="01" title="Work Experience" />
+          <div className="reveal-item mb-10 border border-white/25 p-6 flex items-start gap-4">
+            <span className="mt-1.5 w-2 h-2 rounded-full bg-white flex-shrink-0 animate-pulse" />
+            <p className="text-sm md:text-base text-white/80 leading-relaxed">
+              <span className="font-semibold uppercase tracking-wide">In arrivo —</span> sto per intraprendere un
+              nuovo percorso come <span className="text-white font-semibold">Cloud Engineer</span> presso{' '}
+              <span className="text-white font-semibold">Dedagroup — deda.bit</span>. Aggiornerò a breve questa
+              sezione con i dettagli della nuova esperienza.
+            </p>
+          </div>
+          <div className="space-y-6">
+            {experiences.map((exp, i) => (
+              <div key={i} className="reveal-item border border-white/15 p-8 hover:border-white/40 transition-colors duration-300">
+                <div className="flex flex-col md:flex-row items-start gap-6 mb-6">
+                  <div className="p-4 border border-white/20 flex-shrink-0 text-white">
+                    {exp.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-tight mb-2">{exp.role}</h3>
+                    <p className="text-base uppercase tracking-[0.15em] text-white/70 mb-1">{exp.company}</p>
+                    <p className="text-white/45 text-sm mb-3">{exp.location}</p>
+                    <div className="flex flex-wrap gap-2 items-center">
+                      <span className="px-3 py-1 border border-white/20 text-[11px] uppercase tracking-wide text-white/70">{exp.period}</span>
+                      <span className="px-3 py-1 border border-white/20 text-[11px] uppercase tracking-wide text-white/70">{exp.type}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-x-8 gap-y-3">
+                  {exp.responsibilities.map((resp, j) => (
+                    <div key={j} className="flex items-start gap-3 border-l border-white/15 pl-4 py-1">
+                      <div className="text-white/40 mt-1 flex-shrink-0">
+                        <Zap size={14} />
+                      </div>
+                      <p className="text-sm text-white/70">{resp}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Qualifications Section */}
+      <section id="qualifications" className="relative overflow-hidden min-h-screen py-24 px-6 border-t border-white/10">
+        <FloatingSymbol icon={Award} className="-top-12 -right-12" />
+        <FloatingSymbol icon={Shield} className="-bottom-16 -left-16" />
+        <div className="max-w-4xl mx-auto">
+          <SectionHeading index="02" title="Education & Qualifications" />
+          <div className="relative">
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-white/20"></div>
+            {qualifications.map((qual, i) => (
+              <div key={i} className="relative pl-20 pb-12 group">
+                <div className="absolute left-[26px] top-1.5 w-3 h-3 bg-white rounded-full border-4 border-black"></div>
+                <div className="reveal-item border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
+                  <div className="text-white font-semibold uppercase tracking-[0.15em] text-sm mb-2">{qual.year}</div>
+                  <h3 className="text-lg md:text-xl font-semibold uppercase tracking-tight mb-2">{qual.title}</h3>
+                  <p className="text-white/55 mb-3 text-sm uppercase tracking-wide">{qual.institution}</p>
+                  <p className="text-white/65 text-sm leading-relaxed">{qual.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="relative overflow-hidden min-h-screen py-24 px-6 border-t border-white/10">
+        <FloatingSymbol icon={Code} className="-top-12 -right-12" />
+        <FloatingSymbol icon={Box} className="-bottom-16 -left-16" />
+        <div className="max-w-6xl mx-auto">
+          <SectionHeading index="03" title="Skills & Expertise" />
+
+          <div className="mb-16">
+            <h3 className="text-xs uppercase tracking-[0.3em] text-white/40 mb-8">Technical Skills</h3>
+            <div className="grid gap-4">
+              {hardSkills.map((skill, i) => (
+                <div key={i} className="reveal-item border border-white/15 p-6 hover:border-white/40 transition-colors duration-300">
+                  <div className="flex items-center gap-4">
+                    <div className="text-white flex-shrink-0">{skill.icon}</div>
+                    <div className="flex-1">
+                      <div className="text-base md:text-lg font-semibold uppercase tracking-wide mb-1">{skill.name}</div>
+                      <span className="text-xs text-white/45 uppercase tracking-wide">{skill.category}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xs uppercase tracking-[0.3em] text-white/40 mb-8">Soft Skills</h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {softSkills.map((skill, i) => (
+                <div
+                  key={i}
+                  className="reveal-item border border-white/15 p-8 hover:border-white/40 transition-colors duration-300"
+                >
+                  <div className="text-white mb-4">
+                    {skill.icon}
+                  </div>
+                  <h4 className="text-lg font-semibold uppercase tracking-tight">{skill.name}</h4>
+                </div>
+              ))}
+              <div className="reveal-item md:col-span-2 border border-white/15 p-6 md:p-8 hover:border-white/40 transition-colors duration-300 flex flex-col sm:flex-row items-center gap-6">
+                <img
+                  src={travelImg}
+                  alt="Viaggio"
+                  className="w-full sm:w-48 h-48 object-cover object-top flex-shrink-0"
+                />
+                <div>
+                  <h4 className="text-lg font-semibold uppercase tracking-tight mb-2">Travel & English</h4>
+                  <p className="text-sm text-white/70 leading-relaxed">
+                    I love to travel, and it's through traveling that I studied and learned English: a language I
+                    use continuously, both at work and in everyday life.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="relative overflow-hidden min-h-screen flex items-center py-24 px-6 border-t border-white/10">
+        <FloatingSymbol icon={Activity} className="-top-12 -right-12" />
+        <FloatingSymbol icon={Eye} className="-bottom-16 -left-16" />
+        <div className="max-w-5xl mx-auto w-full">
+          <SectionHeading index="04" title="About Me" />
+          <div className="reveal-item border border-white/15 p-8 md:p-12 hover:border-white/40 transition-colors duration-300">
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              I'm a Technical IT Specialist with a strong passion for ICT and a solid background in cybersecurity operations.
+              My expertise includes SOC L1 analysis, incident triage, and SIEM rule management, ensuring resilient and secure infrastructures.
+            </p>
+
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              Since <span className="text-white font-semibold">July 2025</span>, I have been working at
+              <span className="text-white font-semibold"> Xenos S.r.l.</span> as a System Administrator and Network Engineer.
+              My responsibilities include managing Microsoft 365 environments, Windows Server with Active Directory,
+              WatchGuard firewalls, Ubiquiti UniFi access points, NAKIVO backup with NAS Synology, and full IT commissioning for business clients.
+            </p>
+
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              Previously, at <span className="text-white font-semibold">Be-innova S.r.l.</span> (January – June 2025),
+              I worked as SOC Analyst L1 across multiple domains including Network and Security System Engineering, Linux system administration,
+              and advanced security monitoring with SIEM systems (Elastic, SGBOX), Bitdefender and Microsoft Defender.
+            </p>
+
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-6">
+              My technical skill set spans Check Point and SecGX firewall administration, IPS/IDS operations with Trellix and Cisco,
+              vulnerability management with Qualys and Nessus, and extensive network monitoring using Netscout and Paessler solutions.
+            </p>
+
+            <p className="text-lg md:text-xl text-white/70 leading-relaxed">
+              Outside of work, I enjoy playing guitar and singing, sports like volleyball and gym training, mountain excursions, and travel.
+              I strongly believe that continuous learning is essential for staying ahead in the fast-evolving IT industry.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+              <div className="text-center p-6 border border-white/15">
+                <Shield size={28} className="mx-auto mb-3 text-white" />
+                <div className="text-lg font-semibold uppercase tracking-wide mb-1">Security</div>
+                <div className="text-white/50 text-sm uppercase tracking-wide">SOC & Firewall</div>
+              </div>
+              <div className="text-center p-6 border border-white/15">
+                <Server size={28} className="mx-auto mb-3 text-white" />
+                <div className="text-lg font-semibold uppercase tracking-wide mb-1">SysAdmin</div>
+                <div className="text-white/50 text-sm uppercase tracking-wide">Linux & Windows</div>
+              </div>
+              <div className="text-center p-6 border border-white/15">
+                <Network size={28} className="mx-auto mb-3 text-white" />
+                <div className="text-lg font-semibold uppercase tracking-wide mb-1">Network</div>
+                <div className="text-white/50 text-sm uppercase tracking-wide">Analysis & Configuring</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="relative overflow-hidden min-h-screen py-24 px-6 border-t border-white/10">
+        <FloatingSymbol icon={Zap} className="-top-12 -right-12" />
+        <FloatingSymbol icon={Database} className="-bottom-16 -left-16" />
+        <div className="max-w-5xl mx-auto">
+          <SectionHeading index="05" title="Progetti" />
+          <div className="grid md:grid-cols-2 gap-4">
+            {projects.map((project, i) => (
+              <div key={i} className="reveal-item border border-white/15 p-8 hover:border-white/40 transition-colors duration-300">
+                <span className="inline-block px-3 py-1 border border-white/20 text-[11px] uppercase tracking-wide text-white/70 mb-4">{project.tag}</span>
+                <h3 className="text-xl md:text-2xl font-semibold uppercase tracking-tight mb-3">{project.title}</h3>
+                <p className="text-sm text-white/70 leading-relaxed">{project.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-14 px-6 border-t border-white/15">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="flex justify-center gap-8 mb-6">
+            <a href="https://www.linkedin.com/in/stefano-cestari-a7a730264/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
+              <Linkedin size={20} />
+            </a>
+            <a href="mailto:stefano.cestari2203@gmail.com" className="text-white/60 hover:text-white transition-colors">
+              <Mail size={20} />
+            </a>
+            <a href="https://github.com/stefanoCestari03" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
+              <Github size={20} />
+            </a>
+          </div>
+          <p className="text-[11px] uppercase tracking-[0.2em] text-white/40 mb-4">© Copyright Stefano Cestari — All Rights Reserved</p>
+          <button
+            onClick={handleDownloadCV}
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors"
+          >
+            <ArrowUpRight size={14} />
+            Download CV
+          </button>
+        </div>
+      </footer>
+
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 1s ease-out;
+        }
+        .animate-fade-in-delay {
+          animation: fade-in 1s ease-out 0.3s backwards;
+        }
+        .animate-fade-in-delay-2 {
+          animation: fade-in 1s ease-out 0.6s backwards;
+        }
+      `}</style>
+      </div>
+    </div>
+  );
+}

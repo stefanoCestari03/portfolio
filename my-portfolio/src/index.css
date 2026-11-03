@@ -8,7 +8,7 @@ html, body, #root {
 }
 
 body {
-  background: #000;
+  background: #05070a;
   color: #fff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,6 +16,15 @@ body {
 }
 
 ::selection {
-  background: #fff;
-  color: #000;
+  background: #3dd6ff;
+  color: #05070a;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
 }
