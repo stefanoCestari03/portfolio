@@ -63,11 +63,21 @@ export default function Background3D() {
 
     let frameId;
     const animate = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollProgress = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+
       network.rotation.y += 0.0016;
       network.rotation.x += 0.0006;
       network.rotation.y += (mouseX * 0.3 - network.rotation.y) * 0.02;
       network.rotation.x += (mouseY * 0.2 - network.rotation.x) * 0.02;
+      network.rotation.z = scrollProgress * Math.PI * 0.5;
+      network.position.y = -scrollProgress * 1.5;
+
       stars.rotation.y += 0.00015;
+      stars.position.y = scrollProgress * 0.8;
+
+      camera.position.z = 9 - scrollProgress * 2;
+
       renderer.render(scene, camera);
       frameId = requestAnimationFrame(animate);
     };
