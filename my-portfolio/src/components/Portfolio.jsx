@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Code, Brain, Award, Briefcase, Mail, Linkedin, Github, ChevronDown, Sparkles, Zap, Shield, Server, Network, Database, Eye, AlertTriangle, Activity, ArrowUpRight, Box, Smartphone } from 'lucide-react';
 import profileImg from "../assets/profile.jpg";
 import travelImg from "../assets/travel.jpg";
+const Background3D = lazy(() => import('./Background3D'));
 
 function SectionHeading({ index, title }) {
   return (
@@ -233,6 +234,10 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      <Suspense fallback={null}>
+        <Background3D />
+      </Suspense>
+      <div className="relative z-10">
       {/* Navigation Bar */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrollY > 50 ? 'bg-black border-b border-white/15' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
@@ -315,6 +320,15 @@ export default function Portfolio() {
       <section id="experience" className="min-h-screen py-24 px-6 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
           <SectionHeading index="01" title="Work Experience" />
+          <div className="mb-10 border border-white/25 p-6 flex items-start gap-4">
+            <span className="mt-1.5 w-2 h-2 rounded-full bg-white flex-shrink-0 animate-pulse" />
+            <p className="text-sm md:text-base text-white/80 leading-relaxed">
+              <span className="font-semibold uppercase tracking-wide">In arrivo —</span> sto per intraprendere un
+              nuovo percorso come <span className="text-white font-semibold">Cloud Engineer</span> presso{' '}
+              <span className="text-white font-semibold">Dedagroup — deda.bit</span>. Aggiornerò a breve questa
+              sezione con i dettagli della nuova esperienza.
+            </p>
+          </div>
           <div className="space-y-6">
             {experiences.map((exp, i) => (
               <div key={i} className="border border-white/15 p-8 hover:border-white/40 transition-colors duration-300">
@@ -533,6 +547,7 @@ export default function Portfolio() {
           animation: fade-in 1s ease-out 0.6s backwards;
         }
       `}</style>
+      </div>
     </div>
   );
 }
